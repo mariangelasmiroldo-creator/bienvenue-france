@@ -1,0 +1,2624 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenue en France ! - Les Régions Françaises (A1)</title>
+    <!-- Tailwind CSS for modern responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter and Poppins for high readability -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .region-card-active {
+            border-left: 6px solid #1d4ed8;
+            background-color: #eff6ff;
+        }
+        /* Custom scrollbar for chat and select boxes */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        /* Message animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        /* 3D Flashcard styles */
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            height: 220px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flip-card-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .flip-card-front {
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            border: 2px solid #e2e8f0;
+        }
+        .flip-card-back {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 2px solid #bfdbfe;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+    <!-- Header with French Tricolore Accent -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="h-2 flex">
+            <div class="w-1/3 bg-blue-600"></div>
+            <div class="w-1/3 bg-white"></div>
+            <div class="w-1/3 bg-red-600"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-4xl">🇫🇷</span>
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-black text-blue-900 tracking-tight">Bienvenue en France !</h1>
+                    <p class="text-xs md:text-sm text-slate-500 font-medium">Découvre les 13 régions de France - Niveau A1 & I.A.</p>
+                </div>
+            </div>
+            <nav class="flex gap-2 flex-wrap justify-center">
+                <a href="#regions-explorer" class="px-3.5 py-1.5 text-xs md:text-sm font-semibold rounded-full bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors">
+                    🗺️ Les Régions
+                </a>
+                <a href="#ai-voice-selector-box" class="px-3.5 py-1.5 text-xs md:text-sm font-semibold rounded-full bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors">
+                    🗣️ Voix I.A.
+                </a>
+                <a href="#quiz-section" class="px-3.5 py-1.5 text-xs md:text-sm font-semibold rounded-full bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition-colors">
+                    🎮 Grand Quiz
+                </a>
+                <a href="#dico-section" class="px-3.5 py-1.5 text-xs md:text-sm font-semibold rounded-full bg-amber-100 text-amber-800 hover:bg-amber-200 transition-colors">
+                    📖 Petit Dico
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
+        
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-3xl p-6 md:p-10 text-white mb-8 shadow-xl relative overflow-hidden">
+            <div class="absolute right-0 bottom-0 opacity-10 pointer-events-none">
+                <i class="fa-solid fa-tower-eiffel text-[200px]"></i>
+            </div>
+            <div class="max-w-3xl relative z-10">
+                <span class="bg-blue-600/50 text-blue-200 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">Niveau A1 + Intelligence Artificielle</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold mt-3 leading-tight">Pronti a viaggiare con l'I.A.? 🚀</h2>
+                <p class="mt-4 text-sm md:text-base text-blue-100 leading-relaxed">
+                    Esplora la Francia con foto reali, scopri personaggi storici, allena la pronuncia e divertiti con gli strumenti I.A. di Gemini! Fai conversazione con il **Jeu de Rôle**, analizza foto nel tuo **Album di Viaggio** o crea **Cartoline d'Arte** personalizzate!
+                </p>
+                
+                <!-- AI Voice Control Center -->
+                <div id="ai-voice-selector-box" class="mt-6 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div>
+                        <h4 class="font-bold text-sm text-white flex items-center gap-2">
+                            <i class="fa-solid fa-microphone-lines text-emerald-400"></i> Motore di Pronuncia I.A. (Text-to-Speech)
+                        </h4>
+                        <p class="text-xs text-blue-200 mt-1">Scegli tra la voce di sistema del tuo browser o una voce realistica generata da Gemini!</p>
+                    </div>
+                    <div class="flex items-center gap-2 w-full md:w-auto">
+                        <select id="voice-engine-select" class="bg-slate-900 text-white text-xs rounded-xl px-3 py-2 border border-slate-700 outline-none cursor-pointer w-full md:w-48">
+                            <option value="system">Voce di Sistema (Browser)</option>
+                            <option value="Zephyr" selected>Gemini: Zephyr (Luminosa)</option>
+                            <option value="Puck">Gemini: Puck (Dinamica)</option>
+                            <option value="Fenrir">Gemini: Fenrir (Vivace)</option>
+                            <option value="Autonoe">Gemini: Autonoe (Chiara)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Explorer -->
+        <div id="regions-explorer" class="grid grid-cols-1 lg:grid-cols-12 gap-8 scroll-mt-24">
+            
+            <!-- Region Selector Sidebar -->
+            <div class="lg:col-span-4 bg-white rounded-2xl shadow-md p-4 max-h-[700px] overflow-y-auto border border-slate-100">
+                <div class="mb-4">
+                    <h3 class="font-bold text-slate-800 text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot text-blue-600"></i> Choisis une région (13)
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">Clicca su una regione per studiare o iniziare attività I.A.</p>
+                </div>
+                
+                <div id="regions-list" class="space-y-2">
+                    <!-- Javascript will populate this -->
+                </div>
+            </div>
+
+            <!-- Region Detail Board with interactive AI Tabs -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                <!-- Navigation Tabs inside Details -->
+                <div class="bg-slate-100 p-1.5 rounded-2xl flex flex-wrap gap-1">
+                    <button onclick="switchTab('infos')" id="tab-btn-infos" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 bg-white text-blue-900 shadow-sm">
+                        <i class="fa-solid fa-book-open"></i> Découvertes
+                    </button>
+                    <button onclick="switchTab('flashcards')" id="tab-btn-flashcards" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50">
+                        <i class="fa-solid fa-clone"></i> Flashcards
+                    </button>
+                    <button onclick="switchTab('chat')" id="tab-btn-chat" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50">
+                        <i class="fa-solid fa-comments"></i> Chat
+                    </button>
+                    <button onclick="switchTab('roleplay')" id="tab-btn-roleplay" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50">
+                        <i class="fa-solid fa-masks-theater"></i> Jeu de Rôle
+                    </button>
+                    <button onclick="switchTab('album')" id="tab-btn-album" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50">
+                        <i class="fa-solid fa-images"></i> Album Photo
+                    </button>
+                    <button onclick="switchTab('card')" id="tab-btn-card" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50">
+                        <i class="fa-solid fa-paint-brush"></i> Carte Postale
+                    </button>
+                    <button onclick="switchTab('aiquiz')" id="tab-btn-aiquiz" class="flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50">
+                        <i class="fa-solid fa-brain"></i> Quiz I.A.
+                    </button>
+                </div>
+
+                <div id="region-detail-card" class="bg-white rounded-3xl shadow-lg border border-slate-100 p-6 md:p-8 transition-all duration-300 min-h-[500px]">
+                    <!-- Dynamic region content or interactive tabs injected here -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Petit Dico (Glossary) -->
+        <div id="dico-section" class="my-12 bg-amber-50 rounded-3xl p-6 md:p-8 border border-amber-200/60 scroll-mt-24">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="text-3xl">📖</span>
+                <div>
+                    <h3 class="text-2xl font-bold text-amber-900">Le Petit Dico (Il piccolo dizionario)</h3>
+                    <p class="text-sm text-amber-800/80">Le parole più importanti di questo viaggio con la loro traduzione in italiano.</p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Un château</strong>
+                    <span class="block text-xs text-slate-500">Un castello</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">La marée</strong>
+                    <span class="block text-xs text-slate-500">La marea</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Le chef-lieu</strong>
+                    <span class="block text-xs text-slate-500">Il capoluogo</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Un plat</strong>
+                    <span class="block text-xs text-slate-500">Un piatto / pietanza</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Célèbre</strong>
+                    <span class="block text-xs text-slate-500">Famoso / celebre</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Magnifique</strong>
+                    <span class="block text-xs text-slate-500">Magnifico</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Le fleuve</strong>
+                    <span class="block text-xs text-slate-500">Il fiume</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-amber-100 shadow-sm">
+                    <strong class="text-amber-900">Un personnage</strong>
+                    <span class="block text-xs text-slate-500">Un personaggio</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz-section" class="bg-emerald-50 rounded-3xl p-6 md:p-8 border border-emerald-200/60 shadow-md scroll-mt-24">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🎮</span>
+                    <div>
+                        <h3 class="text-2xl font-bold text-emerald-900">Le Grand Quiz des Régions !</h3>
+                        <p class="text-sm text-emerald-800/80">Metti alla prova quello che hai imparato leggendo le schede delle regioni.</p>
+                    </div>
+                </div>
+                <button onclick="startQuiz()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm rounded-xl shadow-md transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-play"></i> Commencer le Quiz
+                </button>
+            </div>
+
+            <!-- Quiz Play Area -->
+            <div id="quiz-box" class="bg-white rounded-2xl p-6 border border-emerald-100 shadow-sm min-h-[220px] flex flex-col justify-center items-center text-center">
+                <p class="text-slate-600 font-medium text-lg">Prêt pour jouer ? Clique sur le bouton vert ci-dessus ! 🚀</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm">Classe de français - Niveau A1 & I.A. (Scuola Secondaria di Primo Grado)</p>
+            <p class="text-xs text-slate-500 mt-2">Créé avec amour et propulsé par Gemini API. Fait en 🇫🇷 et 🇮🇹</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global State variables
+        let currentRegionIndex = 0;
+        let activeTab = "infos"; // infos, flashcards, chat, roleplay, album, card, aiquiz
+        const apiKey = ""; // Canvas handles API key injection automatically if left empty
+
+        // Robust, expanded 13 regions dataset with exactly 4 elements per key and 3 lines (A1 French)
+        const regionsData = [
+            {
+                id: "idf",
+                name: "Île-de-France",
+                capital: "Paris 📍",
+                chefLieuLines: "Paris est la capitale de la France (la capitale della Francia). C'est une ville magique traversée par la Seine (il fiume Senna) avec beaucoup de musées célèbres comme le Louvre 🖼️.",
+                color: "indigo",
+                emoji: "🗼",
+                bannerImg: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1524396309943-e03f5db0a8ea?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>La Tour Eiffel</strong> 🗼<br>C'est le grand symbole de Paris.<br>Elle mesure 330 mètres de hauteur.",
+                    "<strong>Le Château de Versailles</strong> 👑<br>C'est la maison des anciens rois.<br>Elle a de très grands et beaux jardins.",
+                    "<strong>Le Musée du Louvre</strong> 🖼️<br>C'est un musée énorme avec une pyramide.<br>On peut y admirer le tableau de la Joconde.",
+                    "<strong>La Cathédrale Notre-Dame</strong> ⛪<br>C'est une très vieille église gothique.<br>Elle se situe sur une île de la Seine."
+                ],
+                eating: [
+                    "<strong>Le Croissant</strong> 🥐<br>C'est une viennoiserie classique et délicieuse.<br>On le mange chaud au petit-déjeuner.",
+                    "<strong>Les Macarons</strong> 🍬<br>Ce sont des petits gâteaux ronds et colorés.<br>Ils sont sucrés et parfumés aux fruits.",
+                    "<strong>La Soupe à l'oignon</strong> 🥣<br>C'est une soupe chaude traditionnelle de Paris.<br>Elle est servie avec du fromage fondu.",
+                    "<strong>Le Brie de Meaux</strong> 🧀<br>C'est un fromage blanc très crémeux.<br>On l'appelle souvent le roi des fromages."
+                ],
+                traditions: [
+                    "<strong>La Ville Lumière</strong> ✨<br>C'est le surnom magique de Paris.<br>Elle brille grâce à son histoire incroyable.",
+                    "<strong>Le Métro historique</strong> 🚇<br>C'est un moyen de transport très rapide.<br>Il y a beaucoup de stations décorées.",
+                    "<strong>Les Bouquinistes</strong> 📚<br>Ce sont des vendeurs de livres anciens.<br>Ils travaillent au bord du grand fleuve.",
+                    "<strong>Disneyland Paris</strong> 🏰<br>C'est un parc d'attractions magique.<br>On y rencontre Mickey et tous ses amis."
+                ],
+                famousPeople: [
+                    { name: "Louis XIV", role: "Le Roi Soleil 👑", desc: "Il a construit le Château de Versailles et régné sur la France (ha regnato sulla Francia)." },
+                    { name: "Edith Piaf", role: "Chanteuse de légende 🎙️", desc: "Elle a chanté 'La Vie en Rose', la chanson française la plus célèbre au monde." },
+                    { name: "Victor Hugo", role: "Grand écrivain 📚", desc: "Auteur du livre légendaire 'Notre-Dame de Paris' et défenseur du peuple (difensore del popolo)." },
+                    { name: "Claude Monet", role: "Artiste Peintre 🎨", desc: "Le roi de l'impressionnisme qui a peint les magnifiques reflets de la lumière." }
+                ],
+                listeningText: "En Île-de-France, Paris est la capitale. On peut visiter la Tour Eiffel et le Château de Versailles. On mange des croissants et des macarons. Paris est la Ville Lumière.",
+                flashcards: [
+                    { f: "La Tour Eiffel 🗼", b: "La Torre Eiffel (il monumento più famoso di Parigi e della Francia)" },
+                    { f: "Le Croissant 🥐", b: "Il croissant (il dolce tipico di pasta sfoglia mangiato a colazione)" },
+                    { f: "La Ville Lumière ✨", b: "La città delle luci (il celebre soprannome dato alla città di Parigi)" }
+                ]
+            },
+            {
+                id: "normandie",
+                name: "Normandie",
+                capital: "Rouen 📍",
+                chefLieuLines: "Rouen est une ville historique magnifique. Elle est célèbre pour sa cathédrale gothique peinte par Monet, ses ruelles anciennes et l'histoire de Jeanne d'Arc ⚔️.",
+                color: "blue",
+                emoji: "🍎",
+                bannerImg: "https://images.unsplash.com/photo-1508849789987-4e5333c12b78?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1478147427282-58a87a120781?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1624462966581-bc6d768cbce5?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Le Mont-Saint-Michel</strong> ⛪<br>C'est une île magique au milieu de la mer.<br>Elle possède une abbaye gothique très ancienne.",
+                    "<strong>Les falaises d'Étretat</strong> 🌊<br>Ce sont de grands murs de craie blanche.<br>La mer a sculpté des arches magnifiques.",
+                    "<strong>La Tapisserie de Bayeux</strong> 🧵<br>C'est une broderie géante du Moyen Âge.<br>Elle raconte l'histoire du roi Guillaume.",
+                    "<strong>Le vieux port de Honfleur</strong> ⛵<br>C'est un charmant petit port historique.<br>Les peintres adorent ses maisons colorées."
+                ],
+                eating: [
+                    "<strong>Le Camembert</strong> 🧀<br>C'est un fromage rond très célèbre.<br>Il est très crémeux et coulant.",
+                    "<strong>La Tarte aux pommes</strong> 🥧<br>C'est un dessert sucré très populaire.<br>Elle est faite avec des pommes fraîches.",
+                    "<strong>Le Cidre normand</strong> 🍏<br>C'est une boisson pétillante de pommes.<br>Il existe du cidre doux sans alcool.",
+                    "<strong>Les Caramels d'Isigny</strong> 🍬<br>Ce sont des bonbons mous savoureux.<br>Ils sont faits avec du beurre salé."
+                ],
+                traditions: [
+                    "<strong>Les vaches à lunettes</strong> 🐄<br>Elles sont blanches avec des taches.<br>Elles ont du marron autour des yeux.",
+                    "<strong>La météo pluvieuse</strong> 🌧️<br>En Normandie, il pleut souvent en été.<br>C'est pour ça que l'herbe est verte.",
+                    "<strong>Les maisons à colombages</strong> 🏠<br>Ce sont des maisons anciennes en bois.<br>Elles donnent un style médiéval charmant.",
+                    "<strong>Les grandes marées</strong> 🌊<br>La mer monte et descend très vite.<br>C'est un spectacle naturel unique."
+                ],
+                famousPeople: [
+                    { name: "Jeanne d'Arc", role: "Héroïne nationale ⚔️", desc: "Elle a libéré la France et sa mémoire est célébrée dans toute la ville de Rouen." },
+                    { name: "Guillaume le Conquérant", role: "Duc et Roi 👑", desc: "Duc de Normandie devenu roi d'Angleterre en 1066 après la bataille d'Hastings." },
+                    { name: "Guy de Maupassant", role: "Écrivain de contes 📚", desc: "Célèbre auteur de nouvelles réalistes qui décrivent la vie des campagnes normandes." },
+                    { name: "Thomas Pesquet", role: "Astronaute moderne 🚀", desc: "L'astronaute français préféré des enfants, né en Normandie et parti dans l'espace." }
+                ],
+                listeningText: "En Normandie, on visite le Mont-Saint-Michel. On mange du camembert et des pommes. Les vaches portent des lunettes.",
+                flashcards: [
+                    { f: "Le Mont-Saint-Michel ⛪", b: "Il monte San Michele (abbazia costruita su un isolotto soggetto alle maree)" },
+                    { f: "Le Camembert 🧀", b: "Il camembert (formaggio cremoso francese dal profumo intenso)" },
+                    { f: "Les Vaches à lunettes 🐄", b: "Le mucche con gli occhiali (hanno tipiche macchie marroni intorno agli occhi)" }
+                ]
+            },
+            {
+                id: "paca",
+                name: "Provence-Alpes-Côte d'Azur",
+                capital: "Marseille 📍",
+                chefLieuLines: "Marseille est le plus grand port de France, au bord de la mer Méditerranée 🌊. C'est une ville très ensoleillée (soleggiata), vivante et célèbre pour son Vieux-Port historique.",
+                color: "purple",
+                emoji: "🪻",
+                bannerImg: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1572453800999-e8d2d1589b7c?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Le Palais des Papes</strong> 🏰<br>C'est un très grand château fort.<br>Il se situe dans la ville d'Avignon.",
+                    "<strong>La Promenade des Anglais</strong> 🏖️<br>C'est une célèbre avenue au bord de l'eau.<br>Elle se trouve dans la ville de Nice.",
+                    "<strong>L'Amphithéâtre d'Arles</strong> 🏛️<br>C'est un monument romain de l'Antiquité.<br>Il ressemble beaucoup au Colisée italien.",
+                    "<strong>Les Gorges du Verdon</strong> 🛶<br>C'est un immense canyon dans la montagne.<br>L'eau a une couleur turquoise magnifique."
+                ],
+                eating: [
+                    "<strong>La Ratatouille</strong> 🍆<br>C'est un bon plat de légumes chauds.<br>Il y a des tomates et des aubergines.",
+                    "<strong>La Bouillabaisse</strong> 🐟<br>C'est une soupe de poissons frais.<br>C'est la grande spécialité de Marseille.",
+                    "<strong>La Salade Niçoise</strong> 🥗<br>C'est une salade fraîche pour l'été.<br>Elle contient des œufs et des olives.",
+                    "<strong>Les Calissons d'Aix</strong> 🍬<br>Ce sont des petits bonbons en losange.<br>Ils sont faits de melon et d'amandes."
+                ],
+                traditions: [
+                    "<strong>La lavande violette</strong> 🪻<br>C'est une fleur qui pousse en été.<br>Les grands champs sentent très bon.",
+                    "<strong>Le jeu de la pétanque</strong> ⚪<br>C'est le jeu de boules traditionnel.<br>Les gens y jouent sur les places.",
+                    "<strong>Le Festival de Cannes</strong> 🎬<br>C'est une fête pour le cinéma mondial.<br>Les acteurs marchent sur le tapis rouge.",
+                    "<strong>Le chant des cigales</strong> 🦗<br>Ces petits insectes chantent au soleil.<br>C'est le symbole des vacances d'été."
+                ],
+                famousPeople: [
+                    { name: "Paul Cézanne", role: "Peintre de la lumière 🎨", desc: "Il a peint de nombreuses fois la montagne Sainte-Victoire près d'Aix-en-Provence." },
+                    { name: "Marcel Pagnol", role: "Écrivain et cinéaste 📚", desc: "Il a raconté avec tendresse ses vacances d'enfance dans les collines de Provence." },
+                    { name: "Frédéric Mistral", role: "Poète régionaliste ✍️", desc: "Il a reçu le prix Nobel de littérature pour avoir défendu la langue provençale." },
+                    { name: "Christian Dior", role: "Créateur de Mode 👗", desc: "Inspiré par les fleurs et jardins de sa villa de vacances de la Côte d'Azur." }
+                ],
+                listeningText: "En Provence, on visite Nice et Avignon. On mange de la ratatouille. Il y a de la lavande violette et on joue à la pétanque.",
+                flashcards: [
+                    { f: "La Lavande 🪻", b: "La lavanda (fiori violetti profumatissimi tipici del sud della Francia)" },
+                    { f: "La Ratatouille 🍆", b: "La ratatouille (stufato di verdure estive come zucchine, melanzane e pomodori)" },
+                    { f: "La Pétanque ⚪", b: "La petanque (gioco tradizionale simile alle bocce diffuso nelle piazze del sud)" }
+                ]
+            },
+            {
+                id: "bretagne",
+                name: "Bretagne",
+                capital: "Rennes 📍",
+                chefLieuLines: "Rennes est une capitale étudiante jeune, dynamique et artistique 🎨. Elle possède de superbes maisons anciennes médiévales en bois et de grands parcs fleuris.",
+                color: "cyan",
+                emoji: "🥞",
+                bannerImg: "https://images.unsplash.com/photo-1511216335778-7cb8f49fa7a3?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1513026187483-1a52e63c5a9b?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Les remparts de Saint-Malo</strong> 🏰<br>C'est une ville entourée de grands murs.<br>Elle protégeait les anciens corsaires célèbres.",
+                    "<strong>Les menhirs de Carnac</strong> 🪨<br>Ce sont de grandes pierres préhistoriques.<br>Elles sont alignées depuis des millénaires.",
+                    "<strong>Le Phare de Ploumanac'h</strong> 🚨<br>C'est un phare en belle pierre rose.<br>Il se situe sur une côte très sauvage.",
+                    "<strong>La forêt de Brocéliande</strong> 🌲<br>C'est une forêt pleine de mystères.<br>La légende dit qu'elle est magique."
+                ],
+                eating: [
+                    "<strong>Les Crêpes sucrées</strong> 🥞<br>C'est le dessert breton le plus connu.<br>On les mange avec du sucre chaud.",
+                    "<strong>Les Galettes de sarrasin</strong> 🥞<br>Ce sont des crêpes salées foncées.<br>On y met du jambon et de l'œuf.",
+                    "<strong>Le Kouign-Amann</strong> 🥮<br>C'est un gâteau traditionnel caramélisé.<br>Il contient beaucoup de beurre salé.",
+                    "<strong>Le Caramel au beurre salé</strong> 🍬<br>C'est une crème sucrée et onctueuse.<br>Elle accompagne parfaitement les crêpes."
+                ],
+                traditions: [
+                    "<strong>L'enchanteur Merlin</strong> 🧙‍♂️<br>C'est un personnage magique celte.<br>Il vit dans les histoires de Brocéliande.",
+                    "<strong>La musique celtique</strong> 🎶<br>On joue de la bombarde et de la cornemuse.<br>Les gens dansent tous ensemble en fête.",
+                    "<strong>Le drapeau Gwenn ha Du</strong> 🏁<br>C'est le drapeau noir et blanc breton.<br>On le voit dans tous les festivals locaux.",
+                    "<strong>La pêche en haute mer</strong> ⛵<br>C'est une tradition maritime ancienne.<br>Les marins bretons adorent l'océan."
+                ],
+                famousPeople: [
+                    { name: "Anne de Bretagne", role: "Duchesse et Reine 👑", desc: "Dernière duchesse souveraine de Bretagne, devenue deux fois reine de France." },
+                    { name: "Jacques Cartier", role: "Explorateur courageux ⛵", desc: "Navigateur de Saint-Malo parti découvrir et explorer le Canada au XVIe siècle." },
+                    { name: "Chateaubriand", role: "Écrivain romantique ✍️", desc: "Grand écrivain enterré sur un îlot face à la mer à Saint-Malo." },
+                    { name: "Merlin l'Enchanteur", role: "Personnage mythique 🧙‍♂️", desc: "Le célèbre magicien protecteur du roi Arthur, vivant dans la forêt bretonne." }
+                ],
+                listeningText: "En Bretagne, on voit des remparts et des menhirs. On mange des crêpes et des galettes salées. C'est le pays des légendes celtes.",
+                flashcards: [
+                    { f: "Les Menhirs 🪨", b: "I menhir (grandi pietre preistoriche allineate, come a Carnac)" },
+                    { f: "La Galette de Sarrasin 🥞", b: "La galletta di grano saraceno (la tipica crêpe salata bretone)" },
+                    { f: "Merlin l'Enchanteur 🧙‍♂️", b: "Mago Merlino (il leggendario mago celtico della foresta di Brocéliande)" }
+                ]
+            },
+            {
+                id: "grandest",
+                name: "Grand Est",
+                capital: "Strasbourg 📍",
+                chefLieuLines: "Strasbourg est une capitale européenne officielle, siège du Parlement européen 🇪🇺. Son quartier médiéval \"La Petite France\" est traversé par des canaux romantiques.",
+                color: "teal",
+                emoji: "🥨",
+                bannerImg: "https://images.unsplash.com/photo-1549693578-d683be217e58?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1515162305285-0293e4767cc2?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1543589077-47d8160677a0?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>La Cathédrale de Strasbourg</strong> ⛪<br>C'est une grande église gothique rose.<br>Elle a une horloge astronomique incroyable.",
+                    "<strong>Le Château du Haut-Koenigsbourg</strong> 🏰<br>C'est un château fort sur la montagne.<br>Il date de l'époque du Moyen Âge.",
+                    "<strong>La Place Stanislas</strong> 🏛️<br>C'est une très belle place royale dorée.<br>Elle se situe dans la ville de Nancy.",
+                    "<strong>La Route des Vins d'Alsace</strong> 🍇<br>C'est un chemin à travers les vignes.<br>Il traverse des petits villages fleuris."
+                ],
+                eating: [
+                    "<strong>La Choucroute alsacienne</strong> 🍲<br>C'est un plat de chou et de saucisses.<br>On le mange chaud pendant l'hiver.",
+                    "<strong>Le Bretzel salé</strong> 🥨<br>C'est un pain traditionnel en nœud.<br>Il est parsemé de gros grains de sel.",
+                    "<strong>La Quiche Lorraine</strong> 🥧<br>C'est une tarte salée aux lardons.<br>Elle contient aussi des œufs et de la crème.",
+                    "<strong>Le Kougelhopf</strong> 🥯<br>C'est une brioche alsacienne haute.<br>Elle est cuite dans un moule spécial."
+                ],
+                traditions: [
+                    "<strong>Les Marchés de Noël</strong> 🎄<br>Strasbourg est la capitale de Noël.<br>Toute la ville est décorée de lumières.",
+                    "<strong>Les cigognes blanches</strong> 🪶<br>Ce sont des grands oiseaux migrateurs.<br>Elles font leurs nids sur les toits.",
+                    "<strong>Les colombages colorés</strong> 🏠<br>Ce sont des dessins en bois sur les murs.<br>Les maisons alsaciennes sont très jolies.",
+                    "<strong>Le chant alsacien</strong> 🎶<br>C'est une musique folklorique festive.<br>Les habitants aiment porter des costumes."
+                ],
+                famousPeople: [
+                    { name: "Auguste Bartholdi", role: "Artiste Sculpteur 🗽", desc: "Né en Alsace, il a conçu la célèbre Statue de la Liberté offerte aux États-Unis." },
+                    { name: "Johannes Gutenberg", role: "Inventeur de génie 🖨️", desc: "Il a avant tout développé l'imprimerie moderne lors de son séjour de travail à Strasbourg." },
+                    { name: "Albert Schweitzer", role: "Docteur et humanitaire 🩺", desc: "Médecin alsacien récompensé par le Prix Nobel de la Paix en 1952." },
+                    { name: "Jeanne d'Arc", role: "Héroïne d'Alsace ⚔️", desc: "Née dans le petit village de Domrémy dans l'ouest de la région Grand Est." }
+                ],
+                listeningText: "Dans le Grand Est, on visite la Cathédrale de Strasbourg. On mange de la choucroute et des bretzels. Il y a de très beaux marchés de Noël.",
+                flashcards: [
+                    { f: "Le Bretzel 🥨", b: "Il bretzel (pane salato intrecciato tipico della cultura alsaziana)" },
+                    { f: "La Choucroute 🍲", b: "I crauti stufati (piatto tipico a base di cavolo acido e salumi)" },
+                    { f: "Le Marché de Noël 🎄", b: "Il mercatino di Natale (famosissimo quello tradicional di Strasburgo)" }
+                ]
+            },
+            {
+                id: "nouvelleaq",
+                name: "Nouvelle-Aquitaine",
+                capital: "Bordeaux 📍",
+                chefLieuLines: "Bordeaux est une ville d'art raffinée classée par l'UNESCO. Elle est célèbre pour sa Place de la Bourse dotée d'un immense miroir d'eau (specchio d'acqua) magique.",
+                color: "emerald",
+                emoji: "🏄‍♂️",
+                bannerImg: "https://images.unsplash.com/photo-1543087903-1ac2ec7aa8c5?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1589136777351-fdc9c9400c7e?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>La Dune du Pilat</strong> 🏜️<br>C'est la dune de sable la plus haute.<br>La vue sur l'océan est spectaculaire.",
+                    "<strong>La grotte de Lascaux</strong> 🎨<br>C'est un trésor de la préhistoire.<br>On y trouve des dessins d'animaux.",
+                    "<strong>Le Phare de Cordouan</strong> 🚨<br>C'est un phare historique majestueux.<br>Il est construit au milieu de la mer.",
+                    "<strong>Les tours de La Rochelle</strong> ⛵<br>Ce sont des grandes tours en pierre.<br>Elles protégeaient le vieux port médiéval."
+                ],
+                eating: [
+                    "<strong>Le Canelé de Bordeaux</strong> 🧁<br>C'est un petit gâteau caramélisé.<br>Il est tendre et parfumé à la vanille.",
+                    "<strong>Les huîtres d'Arcachon</strong> 🦪<br>Ce sont des coquillages frais et salés.<br>On les mange avec du jus de citron.",
+                    "<strong>Le Gâteau Basque</strong> 🍒<br>C'est une tourte sucrée traditionnelle.<br>Elle est fourrée à la confiture.",
+                    "<strong>Le Jambon de Bayonne</strong> 🍖<br>C'est un excellent jambon cru séché.<br>Il est produit dans le sud-ouest."
+                ],
+                traditions: [
+                    "<strong>Le surf à Biarritz</strong> 🏄‍♂️<br>Les vagues de l'océan sont grandes.<br>C'est la capitale européenne du surf.",
+                    "<strong>La forêt des Landes</strong> 🌲<br>C'est une immense forêt de pins sauvages.<br>Elle a été plantée par les humains.",
+                    "<strong>Le piment d'Espelette</strong> 🌶️<br>C'est un petit piment rouge doux.<br>On le fait sécher sur les maisons.",
+                    "<strong>La pelote basque</strong> 🥎<br>C'est un sport traditionnel très rapide.<br>On joue avec une balle contre un mur."
+                ],
+                famousPeople: [
+                    { name: "Aliénor d'Aquitaine", role: "Reine d'exception 👑", desc: "Femme d'État puissante, reine de France puis d'Angleterre au Moyen Âge." },
+                    { name: "Maurice Ravel", role: "Compositeur célèbre 🎵", desc: "Grand musicien né au Pays Basque, auteur du mondialement connu 'Boléro'." },
+                    { name: "Montesquieu", role: "Philosophe des Lumières ✍️", desc: "Né près de Bordeaux, il a écrit des théories politiques modernes majeures." },
+                    { name: "Michel de Montaigne", role: "Humaniste et écrivain 📚", desc: "Maire de Bordeaux et grand philosophe de la Renaissance française." }
+                ],
+                listeningText: "En Nouvelle-Aquitaine, on peut monter sur la Dune du Pilat. On mange des canelés. Biarritz est une ville célèbre pour les surfeurs.",
+                flashcards: [
+                    { f: "La Dune du Pilat 🏜️", b: "La duna di Pilat (la duna di sabbia più alta d'Europa, con vista oceano)" },
+                    { f: "Le Canelé 🧁", b: "Il canelé (dolce di Bordeaux profumato al rum e vaniglia, caramellato)" },
+                    { f: "Biarritz 🏄‍♂️", b: "Biarritz (famosa località balneare sull'Atlantico amata dai surfisti)" }
+                ]
+            },
+            {
+                id: "occitanie",
+                name: "Occitanie",
+                capital: "Toulouse 📍",
+                chefLieuLines: "Toulouse, surnommée la \"Ville Rose\" à cause de ses briques de terre cuite, est la capitale européenne de l'espace et de l'aviation 🚀 (Airbus).",
+                color: "rose",
+                emoji: "🏰",
+                bannerImg: "https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1541315668748-12499d75062a?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1638970144933-2868ef618e4e?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Carcassonne</strong> 🏰<br>C'est une cité médiévale fortifiée.<br>Elle possède des doubles remparts géants.",
+                    "<strong>Le Pont du Gard</strong> 🌉<br>C'est un pont-aqueduc romain très haut.<br>Il a trois étages d'arches de pierre.",
+                    "<strong>Le Viaduc de Millau</strong> 🌉<br>C'est un pont routier très moderne.<br>Il passe au-dessus des nuages.",
+                    "<strong>La Basilique Saint-Sernin</strong> ⛪<br>C'est une grande église romane rose.<br>Elle se trouve à Toulouse."
+                ],
+                eating: [
+                    "<strong>Le Cassoulet</strong> 🍲<br>C'est un plat de fagioli et de viandes.<br>Il est mijoté dans un plat de terre.",
+                    "<strong>L'Aligot de l'Aubrac</strong> 🧀<br>C'est une purée crémeuse et élastique.<br>Elle contient beaucoup de fromage frais.",
+                    "<strong>Le Roquefort</strong> 🧀<br>C'est un fromage bleu fort de brebis.<br>Il mûrit dans des grottes naturelles.",
+                    "<strong>La Croustade aux pommes</strong> 🥧<br>C'est une tarte sucrée croustillante.<br>La pâte est légère comme de la dentelle."
+                ],
+                traditions: [
+                    "<strong>Le Canal du Midi</strong> ⛵<br>C'est un long fleuve tranquille artificiel.<br>Il relie Toulouse à la mer Méditerranée.",
+                    "<strong>Les ours des Pyrénées</strong> 🐻<br>Ces grands animaux vivent en montagne.<br>Ils sont libres et très protégés.",
+                    "<strong>Les joutes de Sète</strong> 🚣‍♂️<br>C'est un combat de chevaliers sur l'eau.<br>Ils s'affrontent sur des barques colorées.",
+                    "<strong>La culture d'oc</strong> 🗣️<br>C'est une langue régionale historique.<br>Elle vient du Moyen Âge des troubadours."
+                ],
+                famousPeople: [
+                    { name: "Toulouse-Lautrec", role: "Artiste Peintre 🎨", desc: "Peintre né à Albi, célèbre pour ses affiches colorées de la vie parisienne." },
+                    { name: "Jean Jaurès", role: "Grand orateur et pacifiste 🗣️", desc: "Homme politique originaire d'Occitanie, défenseur de la paix et des ouvriers." },
+                    { name: "Pierre-Paul Riquet", role: "Ingénieur visionnaire 📐", desc: "Il a conçu et construit le Canal du Midi sous le règne de Louis XIV." },
+                    { name: "Antoine de Saint-Exupéry", role: "Pilote et auteur ✈️", desc: "Il a écrit le Petit Prince et s'est envolé depuis les pistes d'aviation de Toulouse." }
+                ],
+                listeningText: "En Occitanie, on visite Carcassonne et le Pont du Gard. On mange du cassoulet. Toulouse s'appelle la Ville Rose.",
+                flashcards: [
+                    { f: "Carcassonne 🏰", b: "Carcassonne (meravigliosa e intatta città medievale con doppie mura)" },
+                    { f: "Le Cassoulet 🍲", b: "Il cassoulet (ricco stufato a base di fagioli bianchi e carne d'anatra o maiale)" },
+                    { f: "La Ville Rose 💗", b: "La città rosa (soprannome di Tolosa dovuto ai mattoni di argilla delle case)" }
+                ]
+            },
+            {
+                id: "ara",
+                name: "Auvergne-Rhône-Alpes",
+                capital: "Lyon 📍",
+                chefLieuLines: "Lyon est la capitale gastronomique de la France. Son quartier historique \"Vieux Lyon\" possède de fascinants passages secrets appelés traboules 🚪.",
+                color: "sky",
+                emoji: "🏔️",
+                bannerImg: "https://images.unsplash.com/photo-1535224206242-487f7090b5bb?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Le Mont Blanc</strong> 🏔️<br>C'est la plus haute montagne d'Europe.<br>Elle est toujours couverte de neige.",
+                    "<strong>La Basilique de Fourvière</strong> ⛪<br>Elle domine la grande ville de Lyon.<br>Ses décorations en or sont magnifiques.",
+                    "<strong>Le lac d'Annecy</strong> 💧<br>C'est un lac d'eau très pure et bleue.<br>On peut y nager pendant l'été.",
+                    "<strong>Le Palais Idéal du Facteur Cheval</strong> 🏰<br>C'est un palais bizarre fait de pierres.<br>Un facteur l'a construit tout seul."
+                ],
+                eating: [
+                    "<strong>La Raclette savoyarde</strong> 🧀<br>C'est un repas de montagne d'hiver.<br>On fait fondre du fromage sur des frites.",
+                    "<strong>La Fondue savoyarde</strong> 🫕<br>C'est un plat convivial à partager.<br>On trempe du pain dans du fromage.",
+                    "<strong>La brioche aux pralines</strong> 🥯<br>C'est une spécialité sucrée de Lyon.<br>Elle est rose avec des amandes.",
+                    "<strong>Le Saucisson de Lyon</strong> 🍖<br>C'est une charcuterie traditionnelle.<br>On le mange chaud avec des patates."
+                ],
+                traditions: [
+                    "<strong>Les Volcans d'Auvergne</strong> 🌋<br>Ce sont des anciennes montagnes éteintes.<br>Elles sont rondes et très vertes.",
+                    "<strong>La Fête des Lumières</strong> ✨<br>Elle a lieu à Lyon le 8 décembre.<br>La ville brille de bougies magiques.",
+                    "<strong>Les Traboules de Lyon</strong> 🚪<br>Ce sont des passages secrets en ville.<br>Ils passent à travers les maisons.",
+                    "<strong>Les stations de ski</strong> 🎿<br>Ce sont de grandes pistes de neige.<br>Chamonix accueille les skieurs en hiver."
+                ],
+                famousPeople: [
+                    { name: "Les Frères Lumière", role: "Inventeurs du Cinéma 📽️", desc: "Ils ont inventé le cinématographe et tourné le premier film de l'histoire à Lyon." },
+                    { name: "Paul Bocuse", role: "Légende de la cuisine 👨‍🍳", desc: "Le plus célèbre chef cuisinier français, créateur de la gastronomie moderne." },
+                    { name: "Blaise Pascal", role: "Mathématicien génial 📐", desc: "Né en Auvergne, il a inventé la première machine à calculer mécanique de l'histoire." },
+                    { name: "Antoine de Saint-Exupéry", role: "Père du Petit Prince ✈️", desc: "Né à Lyon, écrivain humaniste et pilote héroïque pendant la guerre." }
+                ],
+                listeningText: "En Auvergne-Rhône-Alpes, on voit le Mont Blanc et des volcans éteints. On mange de la raclette avec beaucoup de fromage fondu.",
+                flashcards: [
+                    { f: "Le Mont Blanc 🏔️", b: "Il Monte Bianco (la montagna più alta d'Europa, situata nelle Alpi)" },
+                    { f: "La Raclette 🧀", b: "La raclette (formaggio fuso spalmato caldissimo su patate e affettati)" },
+                    { f: "Les Volcans d'Auvergne 🌋", b: "I vulcani dell'Alvernia (antiche montagne vulcaniche ormai spente e verdi)" }
+                ]
+            },
+            {
+                id: "bourgognefc",
+                name: "Bourgogne-Franche-Comté",
+                capital: "Dijon 📍",
+                chefLieuLines: "Dijon est une élégante cité médiévale, capitale historique des Ducs de Bourgogne. Elle est célèbre pour sa pierre claire et ses toits colorés.",
+                color: "amber",
+                emoji: "🐌",
+                bannerImg: "https://images.unsplash.com/photo-1504109586057-7a2bfd00d31e?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1513530176992-0cf39c4cdb4f?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Les Hospices de Beaune</strong> 🏠<br>C'est un ancien hôpital médiéval gothique.<br>Le toit de tuiles colorées est géométrique.",
+                    "<strong>Le Palais des Ducs</strong> 🏰<br>Il se situe dans la ville de Dijon.<br>C'était la maison des souverains d'autrefois.",
+                    "<strong>La Citadelle de Besançon</strong> 🏰<br>C'est une grande fortification de pierre.<br>Elle a été dessinée par Vauban.",
+                    "<strong>L'Abbaye de Fontenay</strong> ⛪<br>C'est un monastère médiéval paisible.<br>Il est entouré de beaux jardins verts."
+                ],
+                eating: [
+                    "<strong>Le Bœuf Bourguignon</strong> 🥩<br>C'est un ragoût de bœuf mijoté.<br>Il est cuit avec beaucoup de carottes.",
+                    "<strong>Les Escargots de Bourgogne</strong> 🐌<br>Ce sont des escargots cuits au four.<br>Ils sont préparés avec du persil et de l'ail.",
+                    "<strong>Le fromage Comté</strong> 🧀<br>C'est un excellent fromage de montagne.<br>Il est fabriqué dans le Jura.",
+                    "<strong>La Moutarde de Dijon</strong> 🟡<br>C'est une sauce jaune piquante célèbre.<br>Elle accompagne les viandes froides."
+                ],
+                traditions: [
+                    "<strong>Les toits vernissés</strong> 🏠<br>Ce sont des tuiles d'or et de couleur.<br>Elles forment de magnifiques dessins.",
+                    "<strong>La chouette de Dijon</strong> 🦉<br>C'est une petite sculpture sur l'église.<br>On la touche pour porter bonheur.",
+                    "<strong>Les vendanges de raisin</strong> 🍇<br>C'est la récolte traditionnelle d'automne.<br>Elle se fait à la main dans les vignes.",
+                    "<strong>La fabrication du Comté</strong> 🧀<br>Le lait frais est chauffé lentement.<br>Le fromage vieillit de longs mois."
+                ],
+                famousPeople: [
+                    { name: "Louis Pasteur", role: "Scientifique de génie 🔬", desc: "Né dans le Jura, il a inventé le vaccin contre la rage et la pasteurisation." },
+                    { name: "Gustave Eiffel", role: "Ingénieur de fer 🏗️", desc: "Né à Dijon, il a conçu la Tour Eiffel et l'armature de la Statue de la Liberté." },
+                    { name: "Colette", role: "Écrivaine de la nature ✍️", desc: "Célèbre femme de lettres qui a écrit sur la vie des femmes et des animaux." },
+                    { name: "Victor Hugo", role: "Grand poète né à Besançon 📚", desc: "Né en Franche-Comté, il a écrit des œuvres lues dans le monde entier." }
+                ],
+                listeningText: "En Bourgogne, on admire les Hospices de Beaune. On mange du bœuf bourguignon et du fromage Comté. On produit la moutarde de Dijon.",
+                flashcards: [
+                    { f: "Les Hospices de Beaune 🏠", b: "Gli ospizi di Beaune (antico ospedale con spettacolari tetti colorati geometrici)" },
+                    { f: "L'Escargot 🐌", b: "La chiocciola (piatto tipico cucinato con burro, prezzemolo e aglio)" },
+                    { f: "La Moutarde de Dijon 🟡", b: "La senape di Digione (famosissima salsa dal gusto molto piccante)" }
+                ]
+            },
+            {
+                id: "centreval",
+                name: "Centre-Val de Loire",
+                capital: "Orléans 📍",
+                chefLieuLines: "Orléans est une ville historique liée à l'histoire de Jeanne d'Arc qui a libéré la ville en 1429. Elle est idéalement située sur les rives de la Loire.",
+                color: "orange",
+                emoji: "👑",
+                bannerImg: "https://images.unsplash.com/photo-1599708153386-62e2d369904d?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1513757378314-e46255f6ed16?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Le Château de Chambord</strong> 🏰<br>C'est un château immense de la Renaissance.<br>Il a été construit pour le roi François Ier.",
+                    "<strong>Le Château de Chenonceau</strong> 🏰<br>C'est un joli palais au-dessus du fleuve.<br>On l'appelle le château des Dames.",
+                    "<strong>Le Château du Clos Lucé</strong> 🎨<br>C'est la dernière maison de Léonard de Vinci.<br>On y voit des maquettes de ses machines.",
+                    "<strong>La Cathédrale d'Orléans</strong> ⛪<br>C'est une grande église gothique royale.<br>Elle célèbre le courage de Jeanne d'Arc."
+                ],
+                eating: [
+                    "<strong>La Tarte Tatin</strong> 🥧<br>C'est une tarte aux pommes inversée.<br>Elle est caramélisée et cuite à l'envers.",
+                    "<strong>Le Sainte-Maure de Touraine</strong> 🧀<br>C'est un fromage de chèvre en forme de bûche.<br>Il y a une paille de seigle au milieu.",
+                    "<strong>Le gâteau de Pithiviers</strong> 🥮<br>C'est une tourte feuilletée dorée et sucrée.<br>Elle est fourrée à la crème d'amandes.",
+                    "<strong>Le miel sauvage de Sologne</strong> 🍯<br>C'est un miel de forêt très savoureux.<br>Il est fabriqué dans la nature préservée."
+                ],
+                traditions: [
+                    "<strong>La vallée des rois</strong> 👑<br>Les rois de France adoraient cette région.<br>Ils y ont construit les plus beaux palais.",
+                    "<strong>La Loire à Vélo</strong> 🚲<br>C'est une longue piste cyclable tranquille.<br>On roule à vélo le long du grand fleuve.",
+                    "<strong>Les habitations troglodytes</strong> 🕳️<br>Ce sont des maisons creusées dans la roche.<br>Elles restent fraîches pendant tout l'été.",
+                    "<strong>La forêt de Sologne</strong> 🦌<br>C'est un grand espace vert sauvage.<br>Les cerfs et sangliers y vivent libres."
+                ],
+                famousPeople: [
+                    { name: "Léonard de Vinci", role: "Génie de la Renaissance 🎨", desc: "Invité par le roi de France, il a fini ses jours à Amboise où il est enterré." },
+                    { name: "Jeanne d'Arc", role: "La Pucelle d'Orléans ⚔️", desc: "Héroïne courageuse qui a libéré Orléans lors d'une célèbre bataille." },
+                    { name: "Honoré de Balzac", role: "Monstre de la littérature 📚", desc: "Né à Tours, auteur de centaines d'histoires décrivant la société française." },
+                    { name: "François Rabelais", role: "Écrivain humoriste 🍷", desc: "Auteur de Gargantua, un livre amusant sur des géants qui aiment manger !" }
+                ],
+                listeningText: "En Centre-Val de Loire, il y a de magnifiques châteaux royaux comme Chambord. On mange la délicieuse tarte Tatin aux pommes.",
+                flashcards: [
+                    { f: "Les Châteaux de la Loire 🏰", b: "I castelli della Loira (splendide residenze reali costruite lungo il fiume)" },
+                    { f: "La Tarte Tatin 🥧", b: "La crostata tatin (torta di mele caramellate cotta capovolta e al contrario)" },
+                    { f: "Rois et Reines 👑", b: "Re e Regine (i sovrani di Francia che elessero la regione a loro dimora)" }
+                ]
+            },
+            {
+                id: "corse",
+                name: "Corse",
+                capital: "Ajaccio 📍",
+                chefLieuLines: "Ajaccio est une radieuse cité maritime bordée par le golfe méditerranéen. Ses rues rappellent partout le souvenir de son citoyen le plus connu : Napoléon.",
+                color: "red",
+                emoji: "🌺",
+                bannerImg: "https://images.unsplash.com/photo-1554162598-a83d31b73cb4?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1486427944299-d1955d23e317?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>Les falaises de Bonifacio</strong> 🏝️<br>C'est une ville perchée sur de la craie.<br>Elle domine la belle mer Méditerranée.",
+                    "<strong>Les Calanches de Piana</strong> ⛰️<br>Ce sont des rochers de pierre rouge volcanique.<br>Le soleil couchant les rend magnifiques.",
+                    "<strong>La Citadelle de Calvi</strong> 🏰<br>C'est une forteresse génoise sur la mer.<br>Elle protégeait le port depuis le Moyen Âge.",
+                    "<strong>La Réserve de Scandola</strong> 🐬<br>C'est un parc naturel marin très protégé.<br>On peut y observer des dauphins sauvages."
+                ],
+                eating: [
+                    "<strong>Le Brocciu corse</strong> 🧀<br>C'est un fromage frais fait de lait de brebis.<br>C'est la spécialité la plus célèbre de l'île.",
+                    "<strong>La Coppa de Corse</strong> 🥩<br>C'est une charcuterie traditionnelle séchée.<br>Elle est épicée avec des herbes locales.",
+                    "<strong>Le gâteau à la châtaigne</strong> 🥮<br>La châtaigne pousse beaucoup en montagne.<br>On utilise sa farine douce pour les desserts.",
+                    "<strong>Le miel du maquis corse</strong> 🍯<br>C'est un miel de fleurs sauvages parfumées.<br>Les abeilles le fabriquent en liberté."
+                ],
+                traditions: [
+                    "<strong>Les chants polyphoniques</strong> 🎶<br>Ce sont des mélodies traditionnelles vocales.<br>Les chanteurs s'accordent sans instruments.",
+                    "<strong>Le grand sentier GR20</strong> 🥾<br>C'est un chemin de montagne célèbre et difficile.<br>Il traverse toute l'île de beauté.",
+                    "<strong>L'odeur du maquis</strong> 🌱<br>C'est une herbe sauvage parfumée typique.<br>Napoléon reconnaissait son île à son parfum.",
+                    "<strong>La langue corse</strong> 🗣️<br>C'est la langue régionale de l'île.<br>Les enfants l'apprennent encore à l'école."
+                ],
+                famousPeople: [
+                    { name: "Napoléon Bonaparte", role: "Empereur des Français 👑", desc: "Né à Ajaccio en 1769, génie militaire devenu empereur de la France." },
+                    { name: "Pasquale Paoli", role: "Père de la patrie 📜", desc: "Général qui a écrit la première constitution démocratique moderne pour la Corse." },
+                    { name: "Tino Rossi", role: "Chanteur éternel 🎙️", desc: "Chanteur de légende né à Ajaccio, connu pour sa célèbre chanson de Noël." },
+                    { name: "Laetitia Casta", role: "Actrice internationale 🎭", desc: "Célèbre actrice de cinéma française d'origine corse, symbole de beauté." }
+                ],
+                listeningText: "La Corse est une belle île. On l'appelle l'Île de Beauté. On mange du fromage Brocciu. Napoléon Bonaparte est né ici.",
+                flashcards: [
+                    { f: "L'Île de Beauté 🏝️", b: "L'isola della bellezza (lo storico e meritato soprannome della Corsica)" },
+                    { f: "Le Brocciu 🧀", b: "Il brocciu (formaggio fresco simile alla ricotta fatto con latte ovino)" },
+                    { f: "Napoléon Bonaparte 👑", b: "Napoleone Bonaparte (il famosissimo imperatore francese nato proprio ad Ajaccio)" }
+                ]
+            },
+            {
+                id: "hautsdefr",
+                name: "Hauts-de-France",
+                capital: "Lille 📍",
+                chefLieuLines: "Lille est une ville festive au cœur industriel d'influence flamande. Ses façades baroques colorées entourent de magnifiques ruelles piétonnes.",
+                color: "violet",
+                emoji: "🍟",
+                bannerImg: "https://images.unsplash.com/photo-1582049007621-0498305c48b2?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1576107232684-1279f390859f?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>La Grand'Place de Lille</strong> 🏛️<br>C'est le centre historique flamand coloré.<br>Les maisons baroques sont magnifiques.",
+                    "<strong>Le Château de Chantilly</strong> 🏰<br>C'est un palais de princes sur l'eau.<br>Il abrite des œuvres d'art célèbres.",
+                    "<strong>La Cathédrale d'Amiens</strong> ⛪<br>C'est la plus grande église gothique.<br>Sa structure géante est impressionnante.",
+                    "<strong>Le Phare du Touquet</strong> 🚨<br>C'est un grand phare blanc et orange.<br>Il offre une vue sur les belles plages."
+                ],
+                eating: [
+                    "<strong>Les frites de la baraque</strong> 🍟<br>Ce sont des frites chaudes croustillantes.<br>Elles sont cuites deux fois.",
+                    "<strong>La tarte au Maroilles</strong> 🧀<br>C'est une quiche salée de fromage fort.<br>Elle est crémeuse et dorée au four.",
+                    "<strong>La Carbonnade Flamande</strong> 🥩<br>C'est un plat de viande de bœuf mijoté.<br>Il est cuit avec de la bière locale.",
+                    "<strong>Les gaufres fourrées</strong> 🧇<br>Ce sont de fines gaufres traditionnelles.<br>Elles contiennent du sucre brun local."
+                ],
+                traditions: [
+                    "<strong>La gentillesse des Ch'tis</strong> 🤝<br>C'est le nom amical donné aux habitants.<br>Ils sont célèbres pour leur hospitalité.",
+                    "<strong>Les Géants défilants</strong> 👹<br>Ce sont de grandes poupées portées dehors.<br>Elles dansent pendant les fêtes locales.",
+                    "<strong>Les beffrois communaux</strong> 🔔<br>Ce sont de grandes tours civiles médiévales.<br>Leurs cloches sonnent toutes les heures.",
+                    "<strong>La Braderie de Lille</strong> 🛍️<br>C'est le plus grand marché d'Europe.<br>Il a lieu au mois de septembre."
+                ],
+                famousPeople: [
+                    { name: "Charles de Gaulle", role: "Général et Président 🎖️", desc: "Né à Lille, chef de la Résistance française puis président de la République." },
+                    { name: "Jules Verne", role: "Écrivain de science-fiction 🚀", desc: "Auteur de 'Le Tour du Monde en 80 Jours', il a vécu et écrit à Amiens." },
+                    { name: "Henri Matisse", role: "Peintre des couleurs 🎨", desc: "Célèbre artiste du fauvisme né dans le nord de la France, maître des formes." },
+                    { name: "Jean de La Fontaine", role: "Auteur des Fables 🦊", desc: "Né à Château-Thierry, célèbre écrivain de fables d'animaux pour les enfants." }
+                ],
+                listeningText: "Dans les Hauts-de-France, on adore manger des frites et de la tarte au Maroilles. Les habitants sont réputés très gentils.",
+                flashcards: [
+                    { f: "Les Frites 🍟", b: "Le patatine fritte (amatissime e preparate a regola d'arte nel nord della Francia)" },
+                    { f: "Les Ch'tis 🤝", b: "I Ch'tis (il termine affettuoso con cui si indicano gli abitanti del nord, famosi per la gentilezza)" },
+                    { f: "La Grand'Place de Lille 🏛️", b: "La piazza principale di Lilla (piena di bellissimi palazzi storici colorati)" }
+                ]
+            },
+            {
+                id: "paysloire",
+                name: "Pays de la Loire",
+                capital: "Nantes 📍",
+                chefLieuLines: "Nantes est une métropole d'art contemporain trépidante. Elle est mondialement connue pour son dynamisme culturel et ses inventions mécaniques uniques.",
+                color: "lime",
+                emoji: "🐘",
+                bannerImg: "https://images.unsplash.com/photo-1437482012997-6f441882c5f1?auto=format&fit=crop&w=800&q=80",
+                visitImg: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80",
+                eatImg: "https://images.unsplash.com/photo-1558961309-dbdf0f6b4e07?auto=format&fit=crop&w=600&q=80",
+                curiosityImg: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80",
+                monuments: [
+                    "<strong>L'Éléphant mécanique de Nantes</strong> 🐘<br>C'est une machine géante en bois et métal.<br>Il arrose les enfants avec de l'eau.",
+                    "<strong>Le Château de Saumur</strong> 🏰<br>C'est un beau château blanc médiéval.<br>Il domine fièrement le grand fleuve.",
+                    "<strong>L'Abbaye de Fontevraud</strong> ⛪<br>C'est un monastère médiéval historique.<br>Les anciens rois d'Angleterre y reposent.",
+                    "<strong>Le Château de Serrant</strong> 🏰<br>C'est un splendide palais privé royal.<br>Il possède de riches livres très anciens."
+                ],
+                eating: [
+                    "<strong>Le Petit Beurre LU</strong> 🍪<br>C'est un biscuit de Nantes au beurre.<br>Il a été inventé il y a très longtemps.",
+                    "<strong>Le Beurre Blanc</strong> 🐟<br>C'est une sauce crème au beurre fondu.<br>Elle est servie sur les poissons frais.",
+                    "<strong>La Brioche vendéenne</strong> 🥯<br>C'est une brioche tressée très moelleuse.<br>Elle est parfumée à la fleur d'oranger.",
+                    "<strong>Le gâteau de Nantes</strong> 🥮<br>C'est un dessert sucré très fondant.<br>Il contient des amandes et du rhum doux."
+                ],
+                traditions: [
+                    "<strong>Le parc du Puy du Fou</strong> ⚔️<br>C'est un grand parc à thème historique.<br>Les spectacles de chevaliers sont géants.",
+                    "<strong>Les marais de Guérande</strong> 🧂<br>Ce sont des bassins extérieurs d'eau.<br>On y récolte le sel marin à la main.",
+                    "<strong>Les 24 Heures du Mans</strong> 🏎️<br>C'est une course de voitures très célèbre.<br>Les pilotes roulent pendant un jour complet.",
+                    "<strong>Le fleuve de la Loire</strong> ⛵<br>C'est le plus sauvage des fleuves français.<br>On peut y observer des oiseaux migrateurs."
+                ],
+                famousPeople: [
+                    { name: "Jules Verne", role: "Romancier de l'imaginaire 🚀", desc: "Né à Nantes, il a inventé de merveilleuses machines de fiction qui inspirent la ville." },
+                    { name: "René Descartes", role: "Grand Philosophe 🧠", desc: "Scientifique et philosophe français célèbre qui a grandi et étudié en Pays de la Loire." },
+                    { name: "Georges Clemenceau", role: "Homme d'État 🎖️", desc: "Originaire de Vendée, il a dirigé la France à la victoire pendant la Première Guerre mondiale." },
+                    { name: "Kylian Mbappé", role: "Sportif moderne ⚽", desc: "Un des plus grands footballeurs français actuels, adulé par les jeunes de la région." }
+                ],
+                listeningText: "En Pays de la Loire, on s'amuse avec l'éléphant géant mécanique de Nantes. On mange des biscuits petits beurres. On visite le Puy du Fou.",
+                flashcards: [
+                    { f: "L'Éléphant Géant de Nantes 🐘", b: "L'elefante gigante (macchina semovente in legno e metallo che spruzza acqua)" },
+                    { f: "Le Petit Beurre LU 🍪", b: "Il piccolo biscotto al burro (famoso frollino nato a Nantes con i quattro angoli arricciati)" },
+                    { f: "Le Puy du Fou ⚔️", b: "Il Puy du Fou (celebre parco a tema storico con enormi spettacoli dal vivo)" }
+                ]
+            }
+        ];
+    </script>
+
+    <script>
+        // Web Audio API Sound Generator for feedback effects without external MP3s
+        function playSfx(type) {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                if (type === 'correct') {
+                    osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1); // E5
+                    gain.gain.setValueAtTime(0.1, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, ctx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(100, ctx.currentTime + 0.25);
+                    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.3);
+                } else if (type === 'flip') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(800, ctx.currentTime);
+                    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.08);
+                    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.15);
+                }
+            } catch (e) {
+                console.warn('Audio Context not started or blocked:', e);
+            }
+        }
+
+        // Helper to convert base64 PCM data to a Playable WAV Blob
+        function pcmToWav(pcm16, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcm16.length * 2);
+            const view = new DataView(buffer);
+            
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + pcm16.length * 2, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, 1, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, pcm16.length * 2, true);
+            
+            let offset = 44;
+            for (let i = 0; i < pcm16.length; i++, offset += 2) {
+                view.setInt16(offset, pcm16[i], true);
+            }
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        async function fetchWithRetry(url, options, maxRetries = 3, delay = 1000) {
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.status === 429) {
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; 
+                        continue;
+                    }
+                    return response;
+                } catch (err) {
+                    if (i === maxRetries - 1) throw err;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        async function callGeminiText(prompt, systemInstruction = "") {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined
+            };
+
+            const response = await fetchWithRetry(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error("Gemini API call failed");
+            const result = await response.json();
+            return result?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+        }
+
+        async function callGeminiStructured(prompt, systemInstruction, schema) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: systemInstruction ? { parts: [{ text: systemInstruction }] } : undefined,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: schema
+                }
+            };
+
+            const response = await fetchWithRetry(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error("Gemini Structured API call failed");
+            const result = await response.json();
+            const jsonText = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+            return JSON.parse(jsonText);
+        }
+
+        async function callGeminiMultimodal(base64Image, mimeType, prompt) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{
+                    parts: [
+                        { text: prompt },
+                        { inlineData: { mimeType: mimeType, data: base64Image } }
+                    ]
+                }]
+            };
+
+            const response = await fetchWithRetry(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error("Gemini Multimodal API call failed");
+            const result = await response.json();
+            return result?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+        }
+
+        async function callImagen(prompt) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
+            const payload = { 
+                instances: { prompt: prompt }, 
+                parameters: { "sampleCount": 1 } 
+            };
+
+            const response = await fetchWithRetry(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error("Imagen generation failed");
+            const result = await response.json();
+            if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                return `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+            } else {
+                throw new Error("No image data in response");
+            }
+        }
+    </script>
+
+    <script>
+        // Custom interactive tab: Jeu de Rôle (Conversational Roleplay)
+        const roleplayStates = {};
+
+        const roleplayScenarios = [
+            {
+                id: "boulangerie",
+                title: "🥖 À la Boulangerie",
+                desc: "Compra dei croissant o una baguette freschi dal panettiere parigino.",
+                system: "You are a friendly baker at a boulangerie in Paris. Speak simple A1 French, keep replies extremely short (1-2 sentences), and provide Italian translations of any complex words in parentheses. Encourage the user to buy a croissant, pain au chocolat, or baguette. Provide exactly 3 simple A1 French choice options for the student's next turn with Italian meanings, and a current summary of what they ordered."
+            },
+            {
+                id: "cafe",
+                title: "☕ Au Café de Nice",
+                desc: "Ordina una bevanda fresca e una fetta di dolce sulla celebre Costa Azzurra.",
+                system: "You are a warm, polite waiter at a lovely terrace cafe in Nice. Speak simple A1 French, keep replies extremely short (1-2 sentences), and provide Italian translations of any complex words in parentheses. Guide the user to order a drink (orangeade, café, thé glacé) or a sweet snack. Provide exactly 3 simple A1 French choice options for the student's next turn with Italian meanings, and a current summary of what they ordered."
+            },
+            {
+                id: "metro",
+                title: "🚇 Demander son Chemin (Métro)",
+                desc: "Chiedi aiuto a un parigino gentile per trovare la linea della metropolitana corretta.",
+                system: "You are a helpful, friendly local at a metro station in Paris. Speak simple A1 French, keep replies extremely short (1-2 sentences), and provide Italian translations of any complex words in parentheses. Guide the user to ask for directions to landmarks (La Tour Eiffel, Le Louvre). Provide exactly 3 simple A1 French choice options for the student's next turn with Italian meanings, and a current summary of the direction."
+            }
+        ];
+
+        function renderRoleplayTab() {
+            const region = regionsData[currentRegionIndex];
+            if (!roleplayStates[region.id]) {
+                roleplayStates[region.id] = {
+                    activeScenario: null,
+                    history: [],
+                    suggestions: [],
+                    loading: false,
+                    summary: ""
+                };
+            }
+
+            const rState = roleplayStates[region.id];
+            let html = `<div class="space-y-6 animate-fade-in">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase">Communication Active</span>
+                    <h3 class="text-xl md:text-2xl font-extrabold text-slate-800 mt-1 flex items-center gap-2">
+                        🎭 Jeu de Rôle en Français
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">Immergiti in uno scenario di vita reale in Francia! Conversa con l'I.A. scegliendo le risposte o scrivendo liberamente.</p>
+                </div>`;
+
+            if (!rState.activeScenario) {
+                html += `
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    ${roleplayScenarios.map(sc => `
+                        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <h4 class="font-extrabold text-slate-800 text-base mb-2">${sc.title}</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">${sc.desc}</p>
+                            </div>
+                            <button onclick="startRoleplay('${sc.id}')" class="mt-4 w-full py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition-colors">
+                                Choisir ce rôle 🎬
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>`;
+            } else {
+                html += `
+                <div class="flex flex-col h-[500px] border border-slate-100 rounded-3xl overflow-hidden bg-slate-50">
+                    <div class="bg-indigo-600 px-5 py-4 text-white flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl">🎭</span>
+                            <div>
+                                <h4 class="font-bold text-sm md:text-base leading-none">${rState.activeScenario.title}</h4>
+                                <p class="text-xs text-indigo-100 mt-1">Scénario interactif en cours</p>
+                            </div>
+                        </div>
+                        <button onclick="exitRoleplay()" class="text-xs bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-1 px-3 rounded-lg transition-colors">
+                            <i class="fa-solid fa-arrow-left"></i> Retour
+                        </button>
+                    </div>
+
+                    <div id="roleplay-chat-container" class="flex-grow p-4 overflow-y-auto space-y-3 flex flex-col">
+                        ${rState.history.map(msg => `
+                            <div class="max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed animate-fade-in ${
+                                msg.role === "assistant" 
+                                ? "bg-white text-slate-800 self-start rounded-tl-none border border-slate-100 shadow-sm" 
+                                : "bg-indigo-500 text-white self-end rounded-tr-none shadow-sm"
+                            }">
+                                <span class="font-extrabold block text-[10px] uppercase tracking-wider mb-1 ${
+                                    msg.role === "assistant" ? "text-indigo-600" : "text-indigo-200"
+                                }">${msg.role === "assistant" ? "Interlocuteur 👤" : "Moi 👤"}</span>
+                                ${formatChatText(msg.text)}
+                            </div>
+                        `).join('')}
+                        ${rState.loading ? `
+                            <div class="bg-white text-slate-400 max-w-[180px] self-start p-3.5 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm text-xs italic animate-pulse">
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-circle-notch animate-spin text-indigo-500"></i> Écriture en cours...</span>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Suggested answers / Scaffolding for A1 beginners -->
+                    ${!rState.loading && rState.suggestions.length > 0 ? `
+                        <div class="p-3 bg-indigo-50 border-t border-indigo-100/60">
+                            <p class="text-[10px] font-bold text-indigo-600 uppercase tracking-widest mb-2 px-1">💡 Aide pour répondre (Suggerimenti) :</p>
+                            <div class="flex flex-col gap-2">
+                                ${rState.suggestions.map(sug => `
+                                    <button onclick="submitRoleplayResponse('${sug.french}')" class="text-left py-2 px-3 bg-white hover:bg-indigo-100/50 border border-indigo-100 rounded-xl text-xs font-semibold text-slate-700 transition-colors flex justify-between items-center group">
+                                        <span>${sug.french} <span class="text-slate-400 font-normal italic">(${sug.italian})</span></span>
+                                        <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-indigo-600 transition-colors"></i>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+
+                    <div class="p-3 bg-white border-t border-slate-100 flex gap-2">
+                        <input type="text" id="roleplay-input-text" onkeypress="handleRoleplayEnter(event)" placeholder="Écris ton message en français..." class="flex-grow px-4 py-3 rounded-xl bg-slate-100 text-sm border-2 border-transparent focus:border-indigo-500 outline-none transition-all text-slate-700" ${rState.loading ? 'disabled' : ''}>
+                        <button onclick="sendManualRoleplayResponse()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5" ${rState.loading ? 'disabled' : ''}>
+                            <span>Envoyer</span> <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>`;
+            }
+
+            html += `</div>`;
+            return html;
+        }
+
+        async function startRoleplay(scId) {
+            const region = regionsData[currentRegionIndex];
+            const sc = roleplayScenarios.find(x => x.id === scId);
+            const rState = roleplayStates[region.id];
+
+            rState.activeScenario = sc;
+            rState.history = [];
+            rState.suggestions = [];
+            rState.loading = true;
+            renderActiveTabContent();
+
+            try {
+                const schema = {
+                    type: "OBJECT",
+                    properties: {
+                        reply: { type: "STRING" },
+                        suggestions: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    french: { type: "STRING" },
+                                    italian: { type: "STRING" }
+                                },
+                                required: ["french", "italian"]
+                            }
+                        },
+                        summary: { type: "STRING" }
+                    },
+                    required: ["reply", "suggestions", "summary"]
+                };
+
+                const initialPrompt = `Start the conversation. Say hello and offer your services in simple A1 French.`;
+                const system = sc.system;
+
+                const response = await callGeminiStructured(initialPrompt, system, schema);
+
+                rState.history.push({ role: "assistant", text: response.reply });
+                rState.suggestions = response.suggestions;
+                rState.summary = response.summary;
+                rState.loading = false;
+                renderActiveTabContent();
+                scrollRoleplayToBottom();
+
+            } catch (err) {
+                console.error(err);
+                rState.activeScenario = null;
+                rState.loading = false;
+                renderActiveTabContent();
+            }
+        }
+
+        function handleRoleplayEnter(event) {
+            if (event.key === "Enter") sendManualRoleplayResponse();
+        }
+
+        function exitRoleplay() {
+            const region = regionsData[currentRegionIndex];
+            roleplayStates[region.id] = {
+                activeScenario: null,
+                history: [],
+                suggestions: [],
+                loading: false,
+                summary: ""
+            };
+            renderActiveTabContent();
+        }
+
+        function sendManualRoleplayResponse() {
+            const inputEl = document.getElementById("roleplay-input-text");
+            if (!inputEl) return;
+            const text = inputEl.value.trim();
+            if (text) {
+                submitRoleplayResponse(text);
+                inputEl.value = "";
+            }
+        }
+
+        async function submitRoleplayResponse(userText) {
+            const region = regionsData[currentRegionIndex];
+            const rState = roleplayStates[region.id];
+            if (rState.loading) return;
+
+            rState.history.push({ role: "user", text: userText });
+            rState.loading = true;
+            renderActiveTabContent();
+            scrollRoleplayToBottom();
+
+            try {
+                let formattedHistory = `Conversation History so far:\n`;
+                rState.history.forEach(m => {
+                    formattedHistory += `${m.role === "assistant" ? "Partner" : "Student"}: ${m.text}\n`;
+                });
+                formattedHistory += `Partner: [Respond now following the previous criteria]`;
+
+                const schema = {
+                    type: "OBJECT",
+                    properties: {
+                        reply: { type: "STRING" },
+                        suggestions: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    french: { type: "STRING" },
+                                    italian: { type: "STRING" }
+                                },
+                                required: ["french", "italian"]
+                            }
+                        },
+                        summary: { type: "STRING" }
+                    },
+                    required: ["reply", "suggestions", "summary"]
+                };
+
+                const response = await callGeminiStructured(formattedHistory, rState.activeScenario.system, schema);
+
+                rState.history.push({ role: "assistant", text: response.reply });
+                rState.suggestions = response.suggestions;
+                rState.summary = response.summary;
+                rState.loading = false;
+                renderActiveTabContent();
+                scrollRoleplayToBottom();
+
+            } catch (err) {
+                console.error(err);
+                rState.history.push({ role: "assistant", text: "Oups, petit bug de connexion ! S'il te plaît, réessaie de répondre ! 🔄" });
+                rState.loading = false;
+                renderActiveTabContent();
+                scrollRoleplayToBottom();
+            }
+        }
+
+        function scrollRoleplayToBottom() {
+            const el = document.getElementById("roleplay-chat-container");
+            if (el) el.scrollTop = el.scrollHeight;
+        }
+    </script>
+
+    <script>
+        // Custom interactive tab: Album Photo (Multimodal Image Analyzer)
+        const albumStates = {};
+
+        const presetAlbumPhotos = [
+            {
+                title: "🗼 La Tour Eiffel",
+                url: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=300&q=85",
+                desc: "Un'icona mondiale a Parigi."
+            },
+            {
+                title: "🥖 Croissant & Café",
+                url: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=300&q=85",
+                desc: "La colazione tipica francese."
+            },
+            {
+                title: "🪻 Provence Lavande",
+                url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=300&q=85",
+                desc: "I profumati campi viola."
+            }
+        ];
+
+        function renderAlbumTab() {
+            const region = regionsData[currentRegionIndex];
+            if (!albumStates[region.id]) {
+                albumStates[region.id] = {
+                    loading: false,
+                    analysisResult: null,
+                    error: null
+                };
+            }
+
+            const state = albumStates[region.id];
+            let html = `
+            <div class="space-y-6 animate-fade-in">
+                <div class="border-b border-slate-100 pb-4">
+                    <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase">Vision Multimodale</span>
+                    <h3 class="text-xl md:text-2xl font-extrabold text-slate-800 mt-1 flex items-center gap-2">
+                        📸 Album de Voyage I.A.
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">Carica una foto della tua vacanza o seleziona uno scenario preimpostato. Gemini la analizzerà spiegando in francese cosa rappresenta, insegnandoti 3 nuovi vocaboli!</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div class="md:col-span-5 space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Choisir une photo d'exemple :</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                ${presetAlbumPhotos.map((p, idx) => `
+                                    <button onclick="analyzePresetPhoto(${idx})" class="relative group h-20 rounded-xl overflow-hidden border border-slate-200 hover:border-blue-500 transition-all flex flex-col justify-end">
+                                        <img src="${p.url}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform">
+                                        <div class="absolute inset-0 bg-black/40"></div>
+                                        <span class="relative z-10 text-[9px] font-bold text-white p-1 text-left leading-tight w-full">${p.title}</span>
+                                    </button>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-100">
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">Ou importer une vraie photo :</label>
+                            <div class="flex items-center justify-center w-full">
+                                <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-slate-300 rounded-2xl cursor-pointer hover:bg-slate-50 transition-colors">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6 text-slate-500">
+                                        <i class="fa-solid fa-cloud-arrow-up text-2xl mb-1 text-slate-400 animate-bounce"></i>
+                                        <p class="text-[11px] font-bold">Sélectionner un fichier image</p>
+                                        <p class="text-[10px] text-slate-400">PNG, JPG ou WEBP</p>
+                                    </div>
+                                    <input type="file" id="album-file-input" class="hidden" accept="image/*" onchange="analyzeUploadedPhoto(this)" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-7 bg-slate-50 rounded-3xl p-5 border border-slate-200 flex flex-col justify-center min-h-[300px]" id="album-analysis-zone">`;
+
+            if (state.loading) {
+                html += `
+                <div class="text-center py-10">
+                    <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <h4 class="font-bold text-slate-800">L'I.A. sta guardando l'immagine...</h4>
+                    <p class="text-xs text-slate-500 mt-2">Analisi multimodale di Gemini in corso...</p>
+                </div>`;
+            } else if (state.analysisResult) {
+                html += `
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden animate-fade-in flex flex-col h-full">
+                    <div class="relative h-44 bg-slate-100 overflow-hidden flex items-center justify-center">
+                        <img src="${state.analysisResult.imageSrc}" class="w-full h-full object-cover">
+                        <span class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">Analyse I.A. Active</span>
+                    </div>
+
+                    <div class="p-5 space-y-4">
+                        <div>
+                            <span class="bg-indigo-50 text-indigo-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">Description Française (A1) ✨</span>
+                            <p class="text-sm italic font-medium text-slate-700 leading-relaxed">"${state.analysisResult.description}"</p>
+                        </div>
+
+                        <div class="border-t border-slate-100 pt-3">
+                            <span class="bg-amber-50 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">Apprendre 3 Mots Clés 📖</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
+                                ${state.analysisResult.words.map(w => {
+                                    // Strip emoji from pronunciation
+                                    const voicePhrase = w.french.replace(/[🗼🥐✨⛪🧀🪻🍆⚪🪨🥞🧙‍♂️🥨🍲🎄🏜️🧁🏄‍♂️🏰🍢💗🏔️🌋🏠🐌🟡👑🥧🏝️🌺🍟🤝🏛️🐘🍪⚔️]/g, "").trim().replace(/'/g, "\\'");
+                                    return `
+                                    <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 flex justify-between items-center">
+                                        <div>
+                                            <strong class="text-xs text-slate-800 block">${w.french}</strong>
+                                            <span class="text-[10px] text-slate-400 block">${w.italian}</span>
+                                        </div>
+                                        <button onclick="playSpeech('${voicePhrase}', this)" class="w-6 h-6 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white flex items-center justify-center text-[9px] shadow-sm transition-transform active:scale-95">
+                                            <i class="fa-solid fa-volume-high"></i>
+                                        </button>
+                                    </div>`;
+                                }).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            } else {
+                html += `
+                <div class="text-center py-10 px-4">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                    <h4 class="font-extrabold text-slate-700">Explore avec tes yeux</h4>
+                    <p class="text-xs text-slate-500 max-w-sm mx-auto mt-2">
+                        Seleziona un'immagine a sinistra per fare l'analisi visiva multimodale e scoprire parole importanti in lingua francese!
+                    </p>
+                </div>`;
+            }
+
+            html += `
+                    </div>
+                </div>
+            </div>`;
+            return html;
+        }
+
+        async function analyzePresetPhoto(idx) {
+            const region = regionsData[currentRegionIndex];
+            const p = presetAlbumPhotos[idx];
+            const state = albumStates[region.id];
+
+            state.loading = true;
+            state.analysisResult = null;
+            renderActiveTabContent();
+
+            try {
+                // Convert remote image to base64 safely
+                const base64Data = await getBase64FromUrl(p.url);
+                await runMultimodalAnalysis(base64Data, "image/jpeg", p.url);
+            } catch (err) {
+                console.error(err);
+                state.loading = false;
+                state.error = "Error during image loading.";
+                renderActiveTabContent();
+            }
+        }
+
+        async function analyzeUploadedPhoto(input) {
+            const region = regionsData[currentRegionIndex];
+            const state = albumStates[region.id];
+            if (!input.files || !input.files[0]) return;
+
+            state.loading = true;
+            state.analysisResult = null;
+            renderActiveTabContent();
+
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64Data = e.target.result.split(',')[1];
+                const mimeType = file.type;
+                await runMultimodalAnalysis(base64Data, mimeType, e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function runMultimodalAnalysis(base64Image, mimeType, sourceSrc) {
+            const region = regionsData[currentRegionIndex];
+            const state = albumStates[region.id];
+
+            try {
+                const systemPrompt = `
+                    You are a friendly, encouraging visual travel guide speaking to an Italian middle school student (Scuola Media) learning simple A1 French.
+                    Analyze the image provided and return a structured JSON response containing:
+                    1. "description": A beautiful, very simple explanation of what is shown in the image in A1 French (max 2 sentences).
+                    2. "words": A strict list of exactly 3 French nouns visible in the photo with their Italian translation.
+                `;
+
+                const prompt = "Analyze this image. What is this? Teach the student 3 words.";
+
+                const schema = {
+                    type: "OBJECT",
+                    properties: {
+                        description: { type: "STRING" },
+                        words: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    french: { type: "STRING" },
+                                    italian: { type: "STRING" }
+                                },
+                                required: ["french", "italian"]
+                            }
+                        }
+                    },
+                    required: ["description", "words"]
+                };
+
+                const response = await callGeminiStructured(
+                    `Prompt: ${prompt}\nImage provided in user turn.`,
+                    systemPrompt,
+                    schema
+                );
+
+                // Re-send with Multimodal call to actually supply the image
+                const actualResponseText = await callGeminiMultimodal(
+                    base64Image,
+                    mimeType,
+                    "Identify this image. Write a very simple 1-2 sentence description in French (A1) for school kids. Output strictly JSON matches our requirement: {description: string, words: [{french: string, italian: string}, ...]}"
+                );
+
+                // Robust cleanup and parse of multimodal result (to match required schema output format)
+                let cleanedJson = actualResponseText.replace(/```json/g, "").replace(/```/g, "").trim();
+                const parsedResult = JSON.parse(cleanedJson);
+
+                state.analysisResult = {
+                    imageSrc: sourceSrc,
+                    description: parsedResult.description,
+                    words: parsedResult.words || []
+                };
+                state.loading = false;
+                renderActiveTabContent();
+
+            } catch (err) {
+                console.error("Multimodal error:", err);
+                state.analysisResult = {
+                    imageSrc: sourceSrc,
+                    description: "C'est une très belle image de voyage ! Elle représente l'ambiance et la culture française. Bon voyage !",
+                    words: [
+                        { french: "Le voyage", italian: "Il viaggio" },
+                        { french: "La photo", italian: "La foto" },
+                        { french: "La France", italian: "La Francia" }
+                    ]
+                };
+                state.loading = false;
+                renderActiveTabContent();
+            }
+        }
+
+        async function getBase64FromUrl(url) {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = reject;
+                reader.readAsDataURL(blob);
+            });
+        }
+    </script>
+
+    <script>
+        const chatHistories = {}; 
+
+        const victorPrompts = [
+            { label: "Comment tu t'appelles ?", phrase: "Comment tu t'appelles ?" },
+            { label: "Tu aimes le fromage ?", phrase: "Tu aimes le fromage ?" },
+            { label: "Raconte une blague !", phrase: "Raconte-moi une blague simple !" },
+            { label: "Quel est ton monument préféré ?", phrase: "Quel est ton monument préféré ?" }
+        ];
+
+        function initChatHistory(regionId, regionName) {
+            if (!chatHistories[regionId]) {
+                chatHistories[regionId] = [
+                    {
+                        role: "model",
+                        text: `Bonjour ! 👋 Je m'appelle **Victor**, ton guide de voyage de l'I.A. ! Tu veux parler de la région **${regionName}** ? Pose-moi des questions simples ou clique sur un bouton ci-dessous !`
+                    }
+                ];
+            }
+        }
+
+        function renderChatTab() {
+            const region = regionsData[currentRegionIndex];
+            initChatHistory(region.id, region.name);
+            const history = chatHistories[region.id];
+
+            let html = `
+                <div class="flex flex-col h-[520px] border border-slate-100 rounded-3xl overflow-hidden bg-slate-50">
+                    <div class="bg-blue-600 px-5 py-4 text-white flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">👨‍🎨</span>
+                            <div>
+                                <h4 class="font-extrabold text-sm md:text-base leading-none">Victor le Copain de Voyage</h4>
+                                <p class="text-xs text-blue-100 mt-1">Discute avec moi en français A1 !</p>
+                            </div>
+                        </div>
+                        <button onclick="clearChat('${region.id}')" class="text-xs bg-blue-700 hover:bg-blue-800 text-white font-bold py-1 px-2.5 rounded-lg transition-colors">
+                            <i class="fa-solid fa-trash-can"></i> Reset
+                        </button>
+                    </div>
+
+                    <div id="chat-messages-container" class="flex-grow p-4 overflow-y-auto space-y-3 flex flex-col">
+            `;
+
+            history.forEach(msg => {
+                if (msg.role === "model") {
+                    html += `
+                        <div class="bg-white text-slate-800 max-w-[85%] self-start p-3.5 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm text-sm leading-relaxed animate-fade-in">
+                            <span class="font-extrabold text-blue-600 block text-[10px] uppercase tracking-wider mb-1">Victor 👨‍🎨</span>
+                            ${formatChatText(msg.text)}
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="bg-blue-500 text-white max-w-[85%] self-end p-3.5 rounded-2xl rounded-tr-none shadow-sm text-sm leading-relaxed animate-fade-in">
+                            <span class="font-extrabold text-blue-200 block text-[10px] uppercase tracking-wider mb-1">Moi 👤</span>
+                            ${msg.text}
+                        </div>
+                    `;
+                }
+            });
+
+            html += `
+                    </div>
+
+                    <!-- Prompt helpers / Scaffolding -->
+                    <div class="p-2 bg-slate-100 border-t border-slate-200/50 flex gap-1.5 overflow-x-auto">
+                        ${victorPrompts.map(vp => `
+                            <button onclick="sendPresetChatText('${vp.phrase}')" class="whitespace-nowrap px-3 py-1.5 bg-white hover:bg-blue-50 border border-slate-200 text-[10px] font-bold text-slate-600 rounded-full transition-all">
+                                💡 ${vp.label}
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div class="p-3 bg-white border-t border-slate-100 flex gap-2">
+                        <input type="text" id="chat-input-text" onkeypress="handleChatEnter(event)" placeholder="Écris ici en français (ou en italien)..." class="flex-grow px-4 py-3 rounded-xl bg-slate-100 text-sm border-2 border-transparent focus:border-blue-500 outline-none transition-all text-slate-700">
+                        <button onclick="sendMessage()" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-1.5">
+                            <span>Envoyer</span> <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            return html;
+        }
+
+        function formatChatText(text) {
+            return text.replace(/\*\*(.*?)\*\//g, '<strong>$1</strong>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+
+        function handleChatEnter(event) {
+            if (event.key === "Enter") sendMessage();
+        }
+
+        function clearChat(regionId) {
+            delete chatHistories[regionId];
+            switchTab('chat');
+        }
+
+        function sendPresetChatText(phrase) {
+            const inputEl = document.getElementById("chat-input-text");
+            if (inputEl) {
+                inputEl.value = phrase;
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const inputEl = document.getElementById("chat-input-text");
+            const text = inputEl.value.trim();
+            if (!text) return;
+
+            const region = regionsData[currentRegionIndex];
+            const history = chatHistories[region.id];
+
+            history.push({ role: "user", text: text });
+            inputEl.value = "";
+            renderActiveTabContent();
+            scrollToBottom();
+
+            const messagesContainer = document.getElementById("chat-messages-container");
+            const typingDiv = document.createElement("div");
+            typingDiv.id = "typing-indicator";
+            typingDiv.className = "bg-white text-slate-400 max-w-[150px] self-start p-3.5 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm text-xs italic animate-pulse";
+            typingDiv.innerHTML = `<span class="flex items-center gap-1"><i class="fa-solid fa-circle-notch animate-spin"></i> Victor réfléchit...</span>`;
+            messagesContainer.appendChild(typingDiv);
+            scrollToBottom();
+
+            try {
+                let formattedHistoryText = `You are discussing the region: ${region.name} (Capital: ${region.capital}).\n\n`;
+                const recentHistory = history.slice(-5);
+                recentHistory.forEach(msg => {
+                    formattedHistoryText += `${msg.role === "model" ? "Victor" : "User"}: ${msg.text}\n`;
+                });
+                formattedHistoryText += `Victor: `;
+
+                const systemInstruction = `
+                    You are Victor, a friendly French travel companion for Italian middle school students (Scuola Media) learning French at A1 level. 
+                    You MUST reply in very simple French, using basic vocabulary, present tense, and short sentences. 
+                    Include playful emojis. 
+                    If you use any moderately difficult or technical French word, always provide its Italian translation immediately next to it in parentheses, e.g., "le château (il castello)" or "le camembert (un formaggio tipico)".
+                    Keep your responses short, cheerful, and encouraging (maximum 3 sentences).
+                    Do not write complex relative clauses or long paragraphs.
+                `;
+
+                const victorResponse = await callGeminiText(formattedHistoryText, systemInstruction);
+                
+                const indicator = document.getElementById("typing-indicator");
+                if (indicator) indicator.remove();
+
+                history.push({ role: "model", text: victorResponse });
+                renderActiveTabContent();
+                scrollToBottom();
+
+            } catch (err) {
+                console.error(err);
+                const indicator = document.getElementById("typing-indicator");
+                if (indicator) indicator.remove();
+
+                history.push({ 
+                    role: "model", 
+                    text: "Désolé ! J'ai un petit problème technique (connessione instabile). S'il te plaît, réessaie dans un instant ! 🔄" 
+                });
+                renderActiveTabContent();
+                scrollToBottom();
+            }
+        }
+
+        function scrollToBottom() {
+            const el = document.getElementById("chat-messages-container");
+            if (el) el.scrollTop = el.scrollHeight;
+        }
+    </script>
+
+    <script>
+        function toggleFlashcard(cardElement) {
+            playSfx('flip');
+            cardElement.classList.toggle('flip-card-flipped');
+        }
+
+        function renderFlashcardsTab() {
+            const region = regionsData[currentRegionIndex];
+            const cards = region.flashcards || [
+                { f: "Le drapeau 🇫🇷", b: "La bandiera (il tricolore blu, bianco e rosso)" },
+                { f: "Le monument 🏰", b: "Il monumento (costruzione storica importante)" },
+                { f: "La spécialité 🧀", b: "La specialità gastronomica locale" }
+            ];
+
+            let html = `
+                <div class="space-y-6 animate-fade-in">
+                    <div class="border-b border-slate-100 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase">Étude & Mémoire</span>
+                            <h3 class="text-xl md:text-2xl font-extrabold text-slate-800 mt-1 flex items-center gap-2">
+                                <span class="text-2xl">🎴</span> Les Flashcards de ${region.name}
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-1">Clicca sulle carte per girarle e scoprire la traduzione. Allena la tua pronuncia!</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            `;
+
+            cards.forEach((card, i) => {
+                const voiceSpeechPhrase = card.f.replace(/[🗼🥐✨⛪🧀🪻🍆⚪🪨🥞🧙‍♂️🥨🍲🎄🏜️🧁🏄‍♂️🏰🍢💗🏔️🌋🏠🐌🟡👑🥧🏝️🌺🍟🤝🏛️🐘🍪⚔️]/g, "").trim().replace(/'/g, "\\'");
+                
+                html += `
+                    <div class="flip-card" onclick="toggleFlashcard(this)">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest text-left w-full">Carte ${i+1}</span>
+                                <div class="my-auto flex flex-col items-center">
+                                    <p class="text-xl md:text-2xl font-black text-blue-900 tracking-tight leading-normal">${card.f}</p>
+                                    <p class="text-[11px] text-blue-500 bg-blue-50 px-3 py-1 rounded-full mt-3 font-semibold uppercase tracking-wider">Toucher pour tourner</p>
+                                </div>
+                                <div class="text-[10px] text-slate-400 text-right w-full">Français</div>
+                            </div>
+
+                            <div class="flip-card-back">
+                                <div class="flex justify-between items-center w-full">
+                                    <span class="text-xs font-bold text-indigo-500 uppercase tracking-widest">Traduction</span>
+                                    <button onclick="event.stopPropagation(); playSpeech('${voiceSpeechPhrase}', this)" class="w-7 h-7 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white flex items-center justify-center text-xs shadow-md transition-transform active:scale-95" title="Prononcer le mot">
+                                        <i class="fa-solid fa-volume-high"></i>
+                                    </button>
+                                </div>
+                                <div class="my-auto flex flex-col items-center px-2">
+                                    <p class="text-sm md:text-base font-bold text-slate-800 leading-normal">${card.b}</p>
+                                </div>
+                                <div class="text-[10px] text-slate-500 text-right w-full">Italiano</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `
+                    </div>
+                    <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-start gap-3 mt-4 text-xs text-slate-600 leading-relaxed">
+                        <span class="text-lg">💡</span>
+                        <div>
+                            <strong>Astuces d'apprentissage (Consigli) :</strong>
+                            <p class="mt-1">Gira le carte una alla volta e prova ad indovinare la traduzione in italiano. Clicca sul pulsante dell'altoparlante per sentire e imitare la corretta pronuncia francese della parola!</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return html;
+        }
+    </script>
+
+    <!-- Postcard Feature -->
+    <script>
+        const generatedCards = {}; 
+
+        function renderCardTab() {
+            const region = regionsData[currentRegionIndex];
+            const cardData = generatedCards[region.id] || {
+                userDraft: `Chère maman, je suis en vacances en ${region.name}. Je visite...`,
+                correctedText: "",
+                feedback: "",
+                imageUrl: ""
+            };
+
+            let html = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 pb-4">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                            <span class="text-2xl">🎨</span> Crée ta carte postale avec l'I.A. !
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1">
+                            Scrivi un piccolo testo in francese sulla tua visita a <strong>${region.name}</strong>. L'I.A. correggerà i tuoi errori e disegnerà un dipinto/cartolina reale basato sul tuo testo!
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        <div class="md:col-span-5 space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-2">1. Rédige ton texte (Scrivi la tua bozza)</label>
+                                <textarea id="postcard-draft-input" rows="5" class="w-full p-4 text-sm rounded-2xl bg-slate-50 border-2 border-slate-200 focus:border-indigo-500 focus:bg-white outline-none transition-all text-slate-700 font-medium leading-relaxed" placeholder="Scrivi qui in francese...">${cardData.userDraft}</textarea>
+                            </div>
+                            
+                            <button id="card-generator-btn" onclick="generatePostcard()" class="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white py-3.5 px-4 rounded-xl font-extrabold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Générer ma carte postale ! 🖼️
+                            </button>
+                        </div>
+
+                        <div class="md:col-span-7 bg-slate-50 rounded-2xl p-4 border border-slate-200 flex flex-col justify-center min-h-[300px]" id="postcard-preview-zone">
+            `;
+
+            if (cardData.imageUrl) {
+                html += `
+                    <div class="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden flex flex-col h-full animate-fade-in">
+                        <div class="relative h-48 md:h-64 bg-slate-100 flex items-center justify-center overflow-hidden">
+                            <img src="${cardData.imageUrl}" class="w-full h-full object-cover" alt="Generated Card Image">
+                            <div class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                                I.A. Imagen Art
+                            </div>
+                        </div>
+
+                        <div class="p-5 flex flex-col md:flex-row gap-4 border-t border-slate-100">
+                            <div class="flex-grow md:w-3/5 border-b md:border-b-0 md:border-r border-slate-100 pb-4 md:pb-0 md:pr-4">
+                                <span class="bg-emerald-50 text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">Texte Corrigé ✨</span>
+                                <p class="text-sm italic font-medium text-slate-700 leading-relaxed">"${cardData.correctedText}"</p>
+                            </div>
+
+                            <div class="md:w-2/5 flex flex-col justify-between">
+                                <div>
+                                    <span class="bg-amber-50 text-amber-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-2 inline-block">Conseils du Prof 👨‍🏫</span>
+                                    <p class="text-[11px] text-slate-600 leading-normal font-medium">${cardData.feedback}</p>
+                                </div>
+                                <div class="mt-4 flex justify-between items-center text-xs text-slate-400">
+                                    <span>📮 Destination : Italie</span>
+                                    <span class="text-xl">🇫🇷</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                html += `
+                    <div class="text-center py-10 px-4">
+                        <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                            <i class="fa-solid fa-mail-bulk"></i>
+                        </div>
+                        <h4 class="font-extrabold text-slate-700">Le bureau de poste magique</h4>
+                        <p class="text-xs text-slate-500 max-w-sm mx-auto mt-2">
+                            Scrivi un testo a sinistra e clicca sul pulsante. L'I.A. correggerà la grammatica e disegnerà un dipinto d'arte personalizzato per te!
+                        </p>
+                    </div>
+                `;
+            }
+
+            html += `
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return html;
+        }
+
+        async function generatePostcard() {
+            const inputEl = document.getElementById("postcard-draft-input");
+            if (!inputEl) return;
+            const userDraft = inputEl.value.trim();
+            if (!userDraft) return;
+
+            const region = regionsData[currentRegionIndex];
+            const btn = document.getElementById("card-generator-btn");
+            const previewZone = document.getElementById("postcard-preview-zone");
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Traitement de l'I.A...`;
+
+            previewZone.innerHTML = `
+                <div class="text-center py-12 px-4 animate-pulse">
+                    <div class="w-16 h-16 bg-indigo-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl animate-bounce">
+                        <i class="fa-solid fa-wand-magic"></i>
+                    </div>
+                    <h4 id="postcard-status-heading" class="font-bold text-slate-800">Étape 1 : Analyse de ton texte par le professeur...</h4>
+                    <p id="postcard-status-sub" class="text-xs text-slate-500 max-w-xs mx-auto mt-2">Correzione in corso. Per favore rimani su questa pagina.</p>
+                </div>
+            `;
+
+            try {
+                const correctorSystemPrompt = `
+                    You are a friendly, encouraging French teacher correcting A1 postcards. 
+                    Input: Draft text in simple French written by a middle school student.
+                    Output: Must return a strictly structured JSON block.
+                    The "correctedText" should be natural simple French (A1).
+                    The "feedback" should be a super friendly, clear explanation of the corrections made in Italian (max 2 sentences).
+                    The "imagePrompt" must be a beautiful, colorful, stylized art postcard description of the scene in English (including landmark name, region atmosphere, oil-painting style).
+                `;
+
+                const correctorPrompt = `Draft text: "${userDraft}" (written about ${region.name} - ${region.capital})`;
+
+                const correctorSchema = {
+                    type: "OBJECT",
+                    properties: {
+                        correctedText: { type: "STRING" },
+                        feedback: { type: "STRING" },
+                        imagePrompt: { type: "STRING" }
+                    },
+                    required: ["correctedText", "feedback", "imagePrompt"]
+                };
+
+                const correctionResult = await callGeminiStructured(correctorPrompt, correctorSystemPrompt, correctorSchema);
+
+                document.getElementById("postcard-status-heading").innerText = "Étape 2 : Dessin de la carte par Imagen I.A...";
+                document.getElementById("postcard-status-sub").innerText = "Google Imagen sta dipingendo l'immagine della tua cartolina. Un attimo...";
+
+                const generatedImageUrl = await callImagen(correctionResult.imagePrompt);
+
+                generatedCards[region.id] = {
+                    userDraft: userDraft,
+                    correctedText: correctionResult.correctedText,
+                    feedback: correctionResult.feedback,
+                    imageUrl: generatedImageUrl
+                };
+
+                renderActiveTabContent();
+
+            } catch (err) {
+                console.error("Postcard Creation Error:", err);
+                previewZone.innerHTML = `
+                    <div class="text-center py-10 px-4 text-rose-600 bg-rose-50 border border-rose-100 rounded-2xl">
+                        <span class="text-4xl block mb-2">⚠️</span>
+                        <h4 class="font-bold">Oups ! Échec de la génération</h4>
+                        <p class="text-xs text-rose-500 mt-2">Errore nella creazione. Riprova più tardi.</p>
+                        <button onclick="switchTab('card')" class="mt-4 px-4 py-2 bg-slate-800 text-white text-xs font-bold rounded-xl shadow-md">Réessayer</button>
+                    </div>
+                `;
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> Générer ma carte postale ! 🖼️`;
+            }
+        }
+    </script>
+
+    <!-- Dynamic AI Quiz Feature -->
+    <script>
+        const aiQuizzes = {}; 
+
+        function renderQuizTab() {
+            const region = regionsData[currentRegionIndex];
+            if (!aiQuizzes[region.id]) {
+                aiQuizzes[region.id] = {
+                    questions: [],
+                    currentIndex: 0,
+                    score: 0,
+                    activeState: 'start' 
+                };
+            }
+
+            const state = aiQuizzes[region.id];
+            let html = `
+                <div class="space-y-6">
+                    <div class="border-b border-slate-100 pb-4">
+                        <h3 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                            <span class="text-2xl">🧠</span> Défi Quiz I.A. Personnalisé
+                        </h3>
+                        <p class="text-xs text-slate-500 mt-1">
+                            Genera un quiz istantaneo con 3 domande uniche sulla regione <strong>${region.name}</strong> grazie a Gemini!
+                        </p>
+                    </div>
+
+                    <div id="ai-quiz-gameplay" class="bg-slate-50 p-6 rounded-2xl border border-slate-100 flex flex-col justify-center min-h-[300px]">
+            `;
+
+            if (state.activeState === 'start') {
+                html += `
+                    <div class="text-center max-w-sm mx-auto">
+                        <span class="text-5xl block mb-4">🎓</span>
+                        <h4 class="font-extrabold text-slate-800">Quiz personalizzato della regione</h4>
+                        <p class="text-xs text-slate-500 mt-2">Genereremo 3 domande basate sui monumenti, cibi e curiosità di questa regione.</p>
+                        <button id="ai-quiz-gen-btn" onclick="generateAIQuiz()" class="mt-6 w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-brain"></i> Générer le quiz I.A. 🌟
+                        </button>
+                    </div>
+                `;
+            } else if (state.activeState === 'loading') {
+                html += `
+                    <div class="text-center py-10">
+                        <div class="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                        <h4 class="font-bold text-slate-800">Gemini sta formulando le domande...</h4>
+                        <p class="text-xs text-slate-500 mt-2">Creazione di quiz didattici di livello A1...</p>
+                    </div>
+                `;
+            } else if (state.activeState === 'question') {
+                const currentQuestion = state.questions[state.currentIndex];
+                html += `
+                    <div class="w-full text-left animate-fade-in">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase">Question ${state.currentIndex + 1} de 3</span>
+                            <span class="text-sm font-semibold text-slate-500">Score: ${state.score}/3</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-6">${currentQuestion.question}</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            ${currentQuestion.options.map((option, idx) => `
+                                <button onclick="checkAIAnswer(${idx})" class="w-full text-left p-4 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 bg-white font-semibold text-xs md:text-sm transition-all flex items-center gap-3 shadow-sm">
+                                    <span class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">${String.fromCharCode(65 + idx)}</span>
+                                    <span>${option}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else if (state.activeState === 'answered') {
+                const currentQuestion = state.questions[state.currentIndex];
+                const isCorrect = state.lastAnswerResult === 'correct';
+                html += `
+                    <div class="text-center py-4 w-full max-w-xl mx-auto animate-fade-in">
+                        <span class="text-5xl block mb-2">${isCorrect ? '✅' : '❌'}</span>
+                        <h4 class="text-xl font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'} mb-2">
+                            ${isCorrect ? 'Correct !' : 'Incorrect !'}
+                        </h4>
+                        <p class="text-slate-600 text-sm mb-6 px-4 font-medium leading-relaxed">
+                            ${isCorrect ? currentQuestion.feedback : `La buona risposta era: <strong>${currentQuestion.options[currentQuestion.answer]}</strong>.<br><span class="text-xs text-slate-500 mt-2 block">${currentQuestion.feedback}</span>`}
+                        </p>
+                        <button onclick="nextAIQuestion()" class="px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl text-sm shadow-md transition-all inline-flex items-center gap-2">
+                            Continuer <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `;
+            } else if (state.activeState === 'finished') {
+                let verdict = "";
+                let gradeEmoji = "⭐";
+                if (state.score === 3) {
+                    verdict = "Parfait ! Magnifico, sei una leggenda di questa regione ! 🥇";
+                    gradeEmoji = "👑🥇";
+                } else if (state.score >= 2) {
+                    verdict = "Très bien ! Molto bene, hai capito le cose principali. 🥈";
+                    gradeEmoji = "🎉🥈";
+                } else {
+                    verdict = "Pas mal ! Rileggi le schede et prova à régénérer un autre quiz. 💪";
+                    gradeEmoji = "💪🥉";
+                }
+
+                html += `
+                    <div class="text-center py-6 animate-fade-in">
+                        <span class="text-5xl block mb-4">${gradeEmoji}</span>
+                        <h4 class="text-2xl font-bold text-slate-800">Quiz Terminé !</h4>
+                        <p class="text-emerald-700 font-extrabold text-3xl mt-2">${state.score} / 3</p>
+                        <p class="text-slate-600 mt-4 max-w-md mx-auto font-medium text-sm leading-relaxed">${verdict}</p>
+                        <button onclick="resetAIQuiz()" class="mt-6 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-md transition-all inline-flex items-center gap-2 text-sm">
+                            <i class="fa-solid fa-rotate-right"></i> Rejouer / Nouveau Quiz
+                        </button>
+                    </div>
+                `;
+            }
+
+            html += `
+                    </div>
+                </div>
+            `;
+            return html;
+        }
+
+        async function generateAIQuiz() {
+            const region = regionsData[currentRegionIndex];
+            const state = aiQuizzes[region.id];
+            state.activeState = 'loading';
+            renderActiveTabContent();
+
+            try {
+                const systemPrompt = `
+                    Generate a strictly structured dynamic 3-question trivia quiz about the French region "${region.name}" for A1 level students.
+                    The final response must be a strict JSON array containing exactly 3 items.
+                    Each item must have:
+                    1. "question": A simple trivia question in basic French.
+                    2. "options": An array of exactly 3 choices in French.
+                    3. "answer": The index of the correct option (0, 1, or 2).
+                    4. "feedback": A brief explanation of why that option is correct, written in Italian for middle school students (1-2 sentences).
+                `;
+
+                const userPrompt = `Generate a custom dynamic A1 quiz about the culture, landmarks, and curiosities of ${region.name}.`;
+
+                const quizSchema = {
+                    type: "ARRAY",
+                    items: {
+                        type: "OBJECT",
+                        properties: {
+                            question: { type: "STRING" },
+                            options: {
+                                type: "ARRAY",
+                                items: { type: "STRING" }
+                            },
+                            answer: { type: "INTEGER" },
+                            feedback: { type: "STRING" }
+                        },
+                        required: ["question", "options", "answer", "feedback"]
+                    }
+                };
+
+                const questions = await callGeminiStructured(userPrompt, systemPrompt, quizSchema);
+                state.questions = questions;
+                state.currentIndex = 0;
+                state.score = 0;
+                state.activeState = 'question';
+                renderActiveTabContent();
+
+            } catch (err) {
+                console.error("AI Quiz generation failed:", err);
+                state.activeState = 'start';
+                renderActiveTabContent();
+            }
+        }
+
+        function checkAIAnswer(selectedIdx) {
+            const region = regionsData[currentRegionIndex];
+            const state = aiQuizzes[region.id];
+            const currentQuestion = state.questions[state.currentIndex];
+
+            if (selectedIdx === currentQuestion.answer) {
+                state.score++;
+                state.lastAnswerResult = 'correct';
+                playSfx('correct');
+            } else {
+                state.lastAnswerResult = 'incorrect';
+                playSfx('wrong');
+            }
+            state.activeState = 'answered';
+            renderActiveTabContent();
+        }
+
+        function nextAIQuestion() {
+            const region = regionsData[currentRegionIndex];
+            const state = aiQuizzes[region.id];
+
+            if (state.currentIndex < 2) {
+                state.currentIndex++;
+                state.activeState = 'question';
+            } else {
+                state.activeState = 'finished';
+            }
+            renderActiveTabContent();
+        }
+
+        function resetAIQuiz() {
+            const region = regionsData[currentRegionIndex];
+            aiQuizzes[region.id] = {
+                questions: [],
+                currentIndex: 0,
+                score: 0,
+                activeState: 'start'
+            };
+            renderActiveTabContent();
+        }
+    </script>
+
+    <script>
+        function switchTab(tabName) {
+            activeTab = tabName;
+            const tabs = ['infos', 'flashcards', 'chat', 'roleplay', 'album', 'card', 'aiquiz'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-btn-${tab}`);
+                if (!btn) return;
+                
+                if (tab === tabName) {
+                    btn.className = "flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 bg-white text-blue-900 shadow-sm";
+                } else {
+                    btn.className = "flex-grow py-2.5 px-2 text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 text-slate-600 hover:bg-white/50";
+                }
+            });
+            renderActiveTabContent();
+        }
+
+        function renderActiveTabContent() {
+            const detailCard = document.getElementById("region-detail-card");
+            const region = regionsData[currentRegionIndex];
+
+            if (activeTab === "infos") {
+                // Formatting lists with icons for high aesthetic value
+                const renderListItems = (list, icon) => {
+                    return list.map((item, i) => `
+                        <li class="flex items-start gap-2.5 bg-white p-3 rounded-xl border border-slate-100 shadow-sm transition-transform hover:scale-[1.01]">
+                            <span class="text-sm font-black text-blue-700 bg-blue-50 w-6 h-6 flex items-center justify-center rounded-full shrink-0">${i+1}</span>
+                            <span class="text-xs md:text-sm text-slate-700 leading-relaxed">${item}</span>
+                        </li>
+                    `).join('');
+                };
+
+                // Formatting Famous People
+                const renderFamousPeople = (people) => {
+                    return people.map(p => `
+                        <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-4 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-extrabold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full uppercase inline-block mb-2">${p.role}</span>
+                                <h4 class="font-extrabold text-slate-800 text-sm md:text-base">${p.name}</h4>
+                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">${p.desc}</p>
+                            </div>
+                        </div>
+                    `).join('');
+                };
+
+                detailCard.innerHTML = `
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4 pb-4 border-b border-slate-100 animate-fade-in">
+                        <div>
+                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase">Fiche Régionale</span>
+                            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800 mt-1 flex items-center gap-2">
+                                <span>${region.emoji}</span> ${region.name}
+                            </h2>
+                        </div>
+                        <button onclick="playSpeech('${region.listeningText.replace(/'/g, "\\'")}', this)" class="flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl shadow-md transition-all font-semibold text-sm w-full md:w-auto justify-center">
+                            <i class="fa-solid fa-volume-high"></i> Écouter le français 🗣️
+                        </button>
+                    </div>
+
+                    <!-- Chef-lieu Zoom Card (NEW) -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100/80 rounded-2xl p-4 mb-6 flex gap-3.5 items-start shadow-sm animate-fade-in">
+                        <span class="text-3xl">📍</span>
+                        <div>
+                            <h4 class="font-bold text-blue-950 text-sm md:text-base">Focus Chef-lieu : ${region.capital}</h4>
+                            <p class="text-xs md:text-sm text-blue-900/90 mt-1.5 leading-relaxed font-medium">${region.chefLieuLines}</p>
+                        </div>
+                    </div>
+
+                    <div class="h-44 md:h-64 rounded-2xl mb-6 bg-cover bg-center flex items-end justify-start p-6 relative overflow-hidden shadow-inner animate-fade-in group" style="background-image: url('${region.bannerImg}');">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent transition-opacity group-hover:opacity-85"></div>
+                        <div class="relative z-10 flex items-center gap-3">
+                            <span class="text-4xl md:text-5xl filter drop-shadow-md">${region.emoji}</span>
+                            <div>
+                                <h4 class="text-white font-black text-xl md:text-2xl tracking-wide uppercase leading-tight">${region.name}</h4>
+                                <p class="text-xs text-slate-300 font-medium">Voyage en images réelles</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Elements Core discoveries -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in">
+                        <div class="bg-blue-50/20 rounded-2xl border border-blue-100 flex flex-col overflow-hidden shadow-sm">
+                            <div class="h-36 overflow-hidden relative">
+                                <img src="${region.visitImg}" alt="${region.name} monument" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1d4ed8/ffffff?text=Monument'">
+                                <span class="absolute top-2 left-2 bg-blue-600/90 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Photos Réelles</span>
+                            </div>
+                            <div class="p-4 flex flex-col gap-3">
+                                <div class="flex items-center gap-2 border-b border-blue-100 pb-2">
+                                    <span class="text-2xl">🏰</span>
+                                    <h4 class="font-bold text-blue-900 text-base md:text-lg">À visiter !</h4>
+                                </div>
+                                <ul class="flex flex-col gap-2">
+                                    ${renderListItems(region.monuments, '🏰')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50/20 rounded-2xl border border-amber-100 flex flex-col overflow-hidden shadow-sm">
+                            <div class="h-36 overflow-hidden relative">
+                                <img src="${region.eatImg}" alt="${region.name} food" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/b45309/ffffff?text=Plat+Typique'">
+                                <span class="absolute top-2 left-2 bg-amber-600/90 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Photos Réelles</span>
+                            </div>
+                            <div class="p-4 flex flex-col gap-3">
+                                <div class="flex items-center gap-2 border-b border-amber-100 pb-2">
+                                    <span class="text-2xl">🍽️</span>
+                                    <h4 class="font-bold text-amber-900 text-base md:text-lg">À manger !</h4>
+                                </div>
+                                <ul class="flex flex-col gap-2">
+                                    ${renderListItems(region.eating, '🍽️')}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-50/20 rounded-2xl border border-purple-100 flex flex-col overflow-hidden shadow-sm">
+                            <div class="h-36 overflow-hidden relative">
+                                <img src="${region.curiosityImg}" alt="${region.name} traditions" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/6b21a8/ffffff?text=Traditions'">
+                                <span class="absolute top-2 left-2 bg-purple-600/90 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase">Photos Réelles</span>
+                            </div>
+                            <div class="p-4 flex flex-col gap-3">
+                                <div class="flex items-center gap-2 border-b border-purple-100 pb-2">
+                                    <span class="text-2xl">💡</span>
+                                    <h4 class="font-bold text-purple-900 text-base md:text-lg">Curiosités</h4>
+                                </div>
+                                <ul class="flex flex-col gap-2">
+                                    ${renderListItems(region.traditions, '💡')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Famous People Row (NEW) -->
+                    <div class="mt-8 border-t border-slate-100 pt-6 animate-fade-in">
+                        <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="text-2xl">🌟</span> Personnages Célèbres de la région
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            ${renderFamousPeople(region.famousPeople)}
+                        </div>
+                    </div>
+                `;
+            } else if (activeTab === "flashcards") {
+                detailCard.innerHTML = renderFlashcardsTab();
+            } else if (activeTab === "chat") {
+                detailCard.innerHTML = renderChatTab();
+                scrollToBottom();
+            } else if (activeTab === "roleplay") {
+                detailCard.innerHTML = renderRoleplayTab();
+            } else if (activeTab === "album") {
+                detailCard.innerHTML = renderAlbumTab();
+            } else if (activeTab === "card") {
+                detailCard.innerHTML = renderCardTab();
+            } else if (activeTab === "aiquiz") {
+                detailCard.innerHTML = renderQuizTab();
+            }
+        }
+
+        async function playSpeech(text, btnElement) {
+            const selectedVoice = document.getElementById("voice-engine-select").value;
+            const originalHTML = btnElement.innerHTML;
+            btnElement.disabled = true;
+            btnElement.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> ...`;
+
+            if (selectedVoice === "system") {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'fr-FR';
+                    utterance.rate = 0.85; 
+                    
+                    const voices = window.speechSynthesis.getVoices();
+                    const frVoice = voices.find(voice => voice.lang.startsWith('fr'));
+                    if (frVoice) utterance.voice = frVoice;
+                    
+                    utterance.onend = () => {
+                        btnElement.disabled = false;
+                        btnElement.innerHTML = originalHTML;
+                    };
+                    utterance.onerror = () => {
+                        btnElement.disabled = false;
+                        btnElement.innerHTML = originalHTML;
+                    };
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    btnElement.disabled = false;
+                    btnElement.innerHTML = originalHTML;
+                }
+            } else {
+                try {
+                    const promptText = `Dis cette phrase avec un excellent accent français de manière claire et adaptée à des étudiants: "${text}"`;
+                    const payload = {
+                        contents: [{
+                            parts: [{ text: promptText }]
+                        }],
+                        generationConfig: {
+                            responseModalities: ["AUDIO"],
+                            speechConfig: {
+                                voiceConfig: {
+                                    prebuiltVoiceConfig: { voiceName: selectedVoice }
+                                }
+                            }
+                        },
+                        model: "gemini-2.5-flash-preview-tts"
+                    };
+
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) throw new Error("Erreur de connexion avec l'I.A. TTS");
+
+                    const result = await response.json();
+                    const part = result?.candidates?.[0]?.content?.parts?.[0];
+                    const audioDataBase64 = part?.inlineData?.data;
+                    const mimeType = part?.inlineData?.mimeType;
+
+                    if (audioDataBase64 && mimeType && mimeType.startsWith("audio/")) {
+                        let sampleRate = 24000;
+                        const match = mimeType.match(/rate=(\d+)/);
+                        if (match) sampleRate = parseInt(match[1], 10);
+
+                        const pcmBuffer = base64ToArrayBuffer(audioDataBase64);
+                        const pcm16 = new Int16Array(pcmBuffer);
+                        const wavBlob = pcmToWav(pcm16, sampleRate);
+                        const audioUrl = URL.createObjectURL(wavBlob);
+
+                        const audio = new Audio(audioUrl);
+                        audio.play();
+                        audio.onended = () => {
+                            btnElement.disabled = false;
+                            btnElement.innerHTML = originalHTML;
+                        };
+                    } else {
+                        throw new Error("Impossible de décoder les données audio.");
+                    }
+
+                } catch (err) {
+                    console.error("Gemini TTS Error:", err);
+                    document.getElementById("voice-engine-select").value = "system";
+                    btnElement.disabled = false;
+                    btnElement.innerHTML = originalHTML;
+                    playSpeech(text, btnElement);
+                }
+            }
+        }
+    </script>
+
+    <!-- UI Sidebar Builder & Native Quiz Logic -->
+    <script>
+        const listContainer = document.getElementById("regions-list");
+        
+        function renderSidebar() {
+            listContainer.innerHTML = "";
+            regionsData.forEach((region, index) => {
+                const btn = document.createElement("button");
+                btn.className = `w-full text-left p-3 rounded-xl transition-all duration-200 flex items-center justify-between border ${
+                    index === currentRegionIndex 
+                    ? "region-card-active font-bold shadow-sm" 
+                    : "bg-slate-50 border-slate-200 hover:bg-slate-100"
+                }`;
+                btn.onclick = () => selectRegion(index);
+                btn.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">${region.emoji}</span>
+                        <div>
+                            <p class="text-sm font-semibold ${index === currentRegionIndex ? 'text-blue-900' : 'text-slate-700'}">${region.name}</p>
+                            <p class="text-xs text-slate-400">${region.capital}</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-xs ${index === currentRegionIndex ? 'text-blue-600' : 'text-slate-400'}"></i>
+                `;
+                listContainer.appendChild(btn);
+            });
+        }
+
+        function selectRegion(index) {
+            currentRegionIndex = index;
+            renderSidebar();
+            renderActiveTabContent();
+            if (window.innerWidth < 1024) {
+                document.getElementById("regions-explorer").scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        const quizQuestions = [
+            {
+                question: "Où se trouve la Tour Eiffel et le Château de Versailles ?",
+                options: ["En Normandie 🍎", "En Île-de-France 🗼", "En Provence 🪻"],
+                answer: 1,
+                feedback: "Excellent ! La Tour Eiffel est le symbole de Paris, en Île-de-France."
+            },
+            {
+                question: "Quelle région est célèbre pour ses vaches qui portent des \"lunettes\" ?",
+                options: ["La Normandie 🐄", "La Corse 🌺", "Les Hauts-de-France 🍟"],
+                answer: 0,
+                feedback: "Oui ! Les vaches normandes portent des taches marron autour de leurs yeux."
+            },
+            {
+                question: "Quelle est la couleur célèbre de la lavande en Provence ?",
+                options: ["Jaune 🟡", "Rouge 🔴", "Violette 🪻"],
+                answer: 2,
+                feedback: "Super ! Les grands champs de lavande parfumée de Provence sont violets !"
+            },
+            {
+                question: "Où peut-on manger d'excellentes crêpes sucrées et galettes salées ?",
+                options: ["En Bretagne 🥞", "Dans le Grand Est 🥨", "En Occitanie 🏰"],
+                answer: 0,
+                feedback: "Bravo ! La Bretagne est la reine des délicieuses crêpes et galettes."
+            },
+            {
+                question: "Quelle est la région surnommée \"l'Île de Beauté\" ?",
+                options: ["La Nouvelle-Aquitaine 🏄‍♂️", "La Corse 🌺", "Le Pays de la Loire Elephant"],
+                answer: 1,
+                feedback: "C'est correct ! La Corse est une île magnifique de la mer Méditerranée."
+            },
+            {
+                question: "Quel animal géant en bois et en métal marche dans la ville de Nantes ?",
+                options: ["Un dragon 🐉", "Un lion 🦁", "Un éléphant 🐘"],
+                answer: 2,
+                feedback: "Parfait ! C'est le grand éléphant des Machines de l'Île en Pays de la Loire."
+            }
+        ];
+
+        let quizIndex = 0;
+        let score = 0;
+
+        function startQuiz() {
+            quizIndex = 0;
+            score = 0;
+            showQuestion();
+            document.getElementById("quiz-section").scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showQuestion() {
+            const quizBox = document.getElementById("quiz-box");
+            if (quizIndex < quizQuestions.length) {
+                const current = quizQuestions[quizIndex];
+                const progPerc = Math.round((quizIndex / quizQuestions.length) * 100);
+
+                quizBox.innerHTML = `
+                    <div class="w-full text-left animate-fade-in">
+                        <div class="mb-5">
+                            <div class="flex justify-between items-center mb-1 text-xs font-bold text-slate-400 uppercase">
+                                <span>Progression du quiz</span>
+                                <span>${progPerc}%</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-emerald-500 rounded-full transition-all duration-300" style="width: ${progPerc}%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase">Question ${quizIndex + 1} de ${quizQuestions.length}</span>
+                            <span class="text-sm font-semibold text-slate-500">Score actuel: ${score}/${quizIndex}</span>
+                        </div>
+                        <h4 class="text-lg md:text-xl font-bold text-slate-800 mb-6">${current.question}</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            ${current.options.map((option, idx) => `
+                                <button onclick="checkAnswer(${idx})" class="w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/30 font-medium text-sm transition-all flex items-center gap-3 bg-white shadow-sm active:scale-95">
+                                    <span class="w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">${String.fromCharCode(65 + idx)}</span>
+                                    <span>${option}</span>
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                let gradeText = "";
+                let emoji = "🏆";
+                if (score === quizQuestions.length) {
+                    gradeText = "Parfait ! Tu es un véritable expert de la France ! Magnifico ! 🥇";
+                    emoji = "👑🥇";
+                } else if (score >= 4) {
+                    gradeText = "Très bien ! Bravo, tu as una ottima comprensione della Francia ! 🥈";
+                    emoji = "🎉🥈";
+                } else {
+                    gradeText = "Pas mal ! Rileggi le fiches delle régions et essaie à nouveau. Ce la puoi fare ! 💪";
+                    emoji = "💪🥉";
+                }
+
+                quizBox.innerHTML = `
+                    <div class="text-center py-6 animate-fade-in w-full">
+                        <span class="text-6xl block mb-4">${emoji}</span>
+                        <h4 class="text-2xl font-bold text-slate-800">Quiz Terminé !</h4>
+                        <div class="my-4">
+                            <p class="text-emerald-700 font-black text-4xl">${score} / ${quizQuestions.length}</p>
+                            <p class="text-xs text-slate-400 mt-1 uppercase font-bold tracking-wider">Note Finale</p>
+                        </div>
+                        <p class="text-slate-600 mt-4 max-w-md mx-auto font-medium">${gradeText}</p>
+                        <button onclick="startQuiz()" class="mt-8 px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl shadow-lg transition-transform active:scale-95 inline-flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i> Jouer encore
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function checkAnswer(selectedIdx) {
+            const current = quizQuestions[quizIndex];
+            const quizBox = document.getElementById("quiz-box");
+            const isCorrect = selectedIdx === current.answer;
+            if (isCorrect) {
+                score++;
+                playSfx('correct');
+            } else {
+                playSfx('wrong');
+            }
+
+            quizBox.innerHTML = `
+                <div class="text-center py-4 w-full max-w-xl animate-fade-in">
+                    <span class="text-6xl block mb-3">${isCorrect ? '✅' : '❌'}</span>
+                    <h4 class="text-2xl font-black ${isCorrect ? 'text-emerald-700' : 'text-rose-700'} mb-2">
+                        ${isCorrect ? 'Correct !' : 'Incorrect !'}
+                    </h4>
+                    <p class="text-slate-600 text-sm md:text-base mb-8 px-4 font-medium leading-relaxed">
+                        ${isCorrect ? current.feedback : `La buona risposta era: <strong class="text-emerald-600">${current.options[current.answer]}</strong>.<br><span class="text-xs text-slate-400 block mt-2">Continua così per imparare!</span>`}
+                    </p>
+                    <button onclick="nextQuestion()" class="px-8 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-sm transition-transform active:scale-95 inline-flex items-center gap-2 shadow-md">
+                        Continuer <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        function nextQuestion() {
+            quizIndex++;
+            showQuestion();
+        }
+
+        window.onload = function() {
+            renderSidebar();
+            switchTab('infos');
+        }
+    </script>
+</body>
+</html>
